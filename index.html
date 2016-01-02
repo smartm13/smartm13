@@ -4,7 +4,22 @@
 <title> HERO </title>
 <script>
 var isPushEnabled = false;
+self.addEventListener('push', function(event) {  
+  console.log('Received a push message', event);
 
+  var title = 'Yay a message.';  
+  var body = 'We have received a push message.';  
+  var icon = '/images/icon-192x192.png';  
+  var tag = 'simple-push-demo-notification-tag';
+
+  event.waitUntil(  
+    self.registration.showNotification(title, {  
+      body: body,  
+      icon: icon,  
+      tag: tag  
+    })  
+  );  
+});
 window.addEventListener('load', function() {  
   var pushButton = document.querySelector('.js-push-button');  
   pushButton.addEventListener('click', function() {  
