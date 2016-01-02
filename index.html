@@ -66,7 +66,7 @@ function initialiseState() {
         }
 
         // Keep your server in sync with the latest subscriptionId
-        alert(subscription);
+        #alert(subscription);
         sendSubscriptionToServer(subscription);
 
         // Set your UI to show they have subscribed for  
@@ -81,6 +81,9 @@ function initialiseState() {
 }
 </script>
 <script>
+function sendSubscriptionToServer(subscription) {
+  alert (subscription.endpoint);
+}
   function subscribe() {  
   // Disable the button so it can't be changed while  
   // we process the permission request  
