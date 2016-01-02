@@ -83,7 +83,7 @@ function initialiseState() {
 <script>
 function sendSubscriptionToServer(subscription) {
   alert (subscription.endpoint);
-  document.getElementsByClassName("url").innerHTML=document.getElementsByClassName("url").innerHTML+subscription.endpoint+" ";
+  document.getElementsById("url").innerHTML=subscription.endpoint;
 }
   function subscribe() {  
   // Disable the button so it can't be changed while  
@@ -130,6 +130,6 @@ function sendSubscriptionToServer(subscription) {
 </button>
 <body>
 ASSHOLE
-<span class="url">null</span>
+<span id="url">null</span>
 </body>
 </html>
