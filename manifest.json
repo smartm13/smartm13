@@ -9,7 +9,7 @@
     "start_url": "/index.html",  
     "display": "standalone",  
     "gcm_sender_id": "72141161518",  
-    "gcm_user_visible_only": true,
+    "gcm_user_visible_only": false,
     "permissions": [
     "gcm"
     ]  
