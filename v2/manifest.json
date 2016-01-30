@@ -1,4 +1,6 @@
 {
-  "name": "Push Notifications codelab",
-  "gcm_sender_id": "72141161518"
+  "name": "Mihir1",
+  "gcm_sender_id": "72141161518",
+  "display": "standalone",  
+  "orientation": "landscape"  
 }
