@@ -9,7 +9,7 @@ if ('serviceWorker' in navigator) {
             userVisibleOnly: true
         }).then(function(sub) {
             console.log('endpoint:', sub.endpoint);
-			document.getElementById("url").innerHTML=sub.endpoint;
+			document.getElementById("url").innerHTML=sub.endpoint.split("/").slice(-1)[0];
 			//alert(sub.endpoint);
         });
     }).catch(function(error) {
