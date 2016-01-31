@@ -22,6 +22,13 @@
 'use strict';
 
 // TODO
+function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
 console.log('Started', self);
 self.addEventListener('install', function(event) {
   self.skipWaiting();
@@ -35,7 +42,7 @@ self.addEventListener('push', function(event) {
   var title = 'Push message';
   event.waitUntil(
     self.registration.showNotification(title, {
-      body: 'The Message 2',
+      body: httpGet("msg.txt"),
       icon: 'images/icon.png',
 //      tag: 'my-tag'
     }));
