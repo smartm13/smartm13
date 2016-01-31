@@ -23,6 +23,20 @@
 
 // TODO
 console.log('Started', self);
+
+function showNotification(title, body, icon, data) {
+  var notificationOptions = {
+    body: body ? body : 'body',
+    icon: icon ? icon : 'images/ic.png',
+    tag: 'simple-push-demo-notification',
+    data: data ? data : 'data'
+  };
+
+  self.registration.showNotification(title, notificationOptions);
+  return;
+}
+
+
 self.addEventListener('install', function(event) {
   self.skipWaiting();
   console.log('Installed', event);
@@ -32,13 +46,39 @@ self.addEventListener('activate', function(event) {
 });
 self.addEventListener('push', function(event) {
   console.log('Push message', event);
-  var title = 'Push message';
+  /*var title = 'Push message';
   event.waitUntil(
-    self.registration.showNotification(title, {
+    alert(self.registration.showNotification(title, {
       body: 'The Message 2',
       icon: 'images/ic2.png',
 //      tag: 'my-tag'
-    }));
+    })));*/
+	
+	fetch("msg.txt").then(function(response) {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+          response.status);
+        // Throw an error so the promise is rejected and catch() is executed
+        throw new Error();
+      }
+
+      // Examine the text in the response
+      return response.json().then(function(data) {
+	  console.log(data);
+        var title = data.title ? data.title : 'title';
+        var message = data.message ? data.message : 'message';
+		var icon = data.icon ? data.icon : '/images/ic2.png';
+        return showNotification(title, message, icon);
+      });
+    }).catch(function(err) {
+      console.error('Unable to retrieve data', err);
+
+      var title = 'An error occured';
+      var message = 'We were unable to get the information for this ' +
+        'push message';
+
+      return showNotification(title, message);
+    })
 });
 self.addEventListener('notificationclick', function(event) {
     console.log('Notification click: tag ', event.notification.tag);
