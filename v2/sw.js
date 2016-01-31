@@ -66,7 +66,7 @@ self.addEventListener('push', function(event) {
 	  console.log(data);
         var title = data.title ? data.title : 'title';
         var message = data.message ? data.message : 'message';
-		var icon = data.icon ? data.icon : '/v2/images/ic3.png?'+Date.now();
+		var icon = data.icon ? data.icon : 'images/icon.png?'+Date.now();
 		//self.registration.showNotification("fast",{silent:"true"});
         //return showNotification(title, message, icon);
 		console.log(
