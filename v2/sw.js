@@ -36,7 +36,6 @@ function showNotification(title, body, icon, data) {
   return;
 }
 
-
 self.addEventListener('install', function(event) {
   self.skipWaiting();
   console.log('Installed', event);
@@ -54,7 +53,7 @@ self.addEventListener('push', function(event) {
 //      tag: 'my-tag'
     })));*/
 	
-	fetch("msg.txt").then(function(response) {
+	fetch("msg.txt?"+Date.now()).then(function(response) {
       if (response.status !== 200) {
         console.log('Looks like there was a problem. Status Code: ' +
           response.status);
@@ -67,8 +66,26 @@ self.addEventListener('push', function(event) {
 	  console.log(data);
         var title = data.title ? data.title : 'title';
         var message = data.message ? data.message : 'message';
-		var icon = data.icon ? data.icon : '/images/ic2.png';
-        return showNotification(title, message, icon);
+		var icon = data.icon ? data.icon : '/images/ic2.png?'+Date.now();
+		//self.registration.showNotification("fast",{silent:"true"});
+        //return showNotification(title, message, icon);
+		console.log(
+  {title:title,meta:
+  {
+    body: message,
+    icon: icon,
+   // tag: 'simple-push-demo-notification',
+    "data": data.data ? data.data : 'dataNULL'
+  }});
+		return self.registration.showNotification(
+  title,
+  {
+    body: message,
+    icon: icon,
+   // tag: 'simple-push-demo-notification',
+    "data": data.data ? data.data : 'dataNULL'
+  });
+  
       });
     }).catch(function(err) {
       console.error('Unable to retrieve data', err);
