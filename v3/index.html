@@ -1,0 +1,25 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+  <title>Push Notification codelab</title>
+  <link rel="manifest" href="manifest.json"> 
+  </head> 
+  <body>
+  <h1>Push Notification codelab</h1>
+  <p>This page must be accessed using HTTPS or via localhost.</p>
+  <script src="js/main.js"></script>
+  <button type="button" onclick="curlcall()">Send cURL</button>
+  <br>
+  <span id="curl">curl -s --header "Authorization: 
+key=AIzaSyC6VG3V4sCJzKQWOkYfTqnCU8IK_QeRuF0" --header "Content-Type: 
+application/json"
+  http://android.googleapis.com/gcm/send -d 
+"{\"registration_ids\":[\"<span id="url">null</span>\"]}"</span>
+  
+  <form action="demo_form.asp">
+  Title: <input type="text" id="title"><br>
+  Message: <input type="text" id="body"><br>
+  </form> 
+  <button type="button" onclick="msg()">Submit</button> 
+  </body>
+</html>
