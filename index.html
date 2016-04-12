@@ -4,13 +4,21 @@
 Enter 10 digit mobile no. :
 <input type="text" placeholder="{only 1st 10 digits will b taken}" id="phno" />
 <br><button id="clickme">Let's Kill'em</button>
+<br><p id="op"></p>
 <script>
 	document.getElementById("clickme").addEventListener("click", clicked);
   function clicked()
   {
   var p=document.getElementById("phno").value.slice(0,10);
   if (isNaN(p)) {return 0;}
-  window.location="https://appen-121818.appspot.com/bsnl?phno="+p;
+  
+ifrm = document.createElement("IFRAME");
+ifrm.setAttribute("src", "https://appen-121818.appspot.com/bsnl?phno="+p);
+ifrm.style.width = 640+"px";
+ifrm.style.height = 480+"px";
+document.body.appendChild(ifrm);
+
+  //window.location="https://appen-121818.appspot.com/bsnl?phno="+p;
   }
 </script>
 </body>
