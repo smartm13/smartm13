@@ -1,0 +1,17 @@
+<html>
+<title>SMS Spammer</title>
+<body>
+Enter 10 digit mobile no. :
+<input type="text" placeholder="{only 1st 10 digits will b taken}" id="phno" />
+<br><button id="clickme">Let's Kill'em</button>
+<script>
+	document.getElementById("clickme").addEventListener("click", clicked);
+  function clicked()
+  {
+  var p=document.getElementById("phno").value.slice(0,10);
+  if isNAN(p) {return 0;}
+  window.location="https://appen-121818.appspot.com/bsnl?phno="+p;
+  }
+</script>
+</body>
+</html>
