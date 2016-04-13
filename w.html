@@ -1,3 +1,87 @@
 <html>
 <a href="intent://send/918000831833#Intent;scheme=smsto;package=com.whatsapp;action=android.intent.action.SENDTO;end">gyh</a>
 </html>
+
+<html>
+<title>WA particular no.
+</title>
+<br>
+<input name="searchTxt" type="text"  onKeyUP="trackChange(this.value,event)" maxlength="512" id="searchTxt" value="919409261078" class="searchField"/>
+<input id="clickMe" type="button" value="WA this number" onclick="searchURL();" />
+<script>
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+    function(m,key,value) {
+      vars[key] = value;
+    });
+    return vars;
+  }    
+
+function init(){
+//alert(location.search);
+document.getElementById("searchTxt").value=getUrlVars()["phno"];
+for(var i=0;i < 2;i++){
+//alert(i);
+document.getElementsByClassName("webpg")[i].innerHTML=window.location.href.split("//")[1].split('/')[0];
+document.getElementsByClassName("link")[i].href=document.getElementsByClassName("link")[i].innerText;
+document.getElementsByClassName("webpg")[i].innerHTML="thiswebsite";
+}
+if (document.getElementById("searchTxt").value=="undefined")
+document.getElementById("searchTxt").value=91;
+if (getUrlVars()["direct"]=="1")
+searchURL();
+
+}
+
+    function searchURL() {
+    var input = document.getElementById("searchTxt");
+
+
+         openwa(input.value);
+    }
+
+function trackChange(value,event)
+{
+if(event.keyCode == 13)
+openwa(value);
+}
+function openwa(phn)
+{
+         window.location ="intent:"+phn+"#Intent;scheme=sms;package=com.whatsapp;action=android.intent.action.SENDTO;S.browser_fallback_url=http%3A%2F%2Fsmartm13ssh.noip.me:1313/wa.html?"+window.location.href.split('?')[1]+";end";
+ 
+}
+</script>
+<body onload="javascript:init()">
+<br>
+Enter any phone number here ,press enter.  
+<br>
+ [proper format of number= 919876543210 i.e. only countrycode and 10digit no.
+<br> NO + sign or 0s in the starting required ]
+<br><br>
+If that phone number exits on whatsapp then u get to start a chat with no. without saving it...
+<br>
+And if not avail on whatsapp then u get a chance to invite by sending SMS
+<br>
+Yo...
+Learned some intents!!!
+<p>
+<b>
+Only applicable in ANDROID browsers...
+</b><br>
+Tested broswers:<br>
+Chrome
+.
+
+<p>
+Supported URL parm are:<p>
+phno=    to get the given phone no. already typed in the field.<br>
+usage: 
+<a id="link1" class="link">http://<span class="webpg" id="webpg1">a</span>/wa.html?phno=919876543210
+</a><br>
+<br>
+direct=  to launch the WA directly without user gesture...may lead to ERRORs
+<br>
+usage: <a id=link2" class="link">http://<span class="webpg" id=webpg2"></span>/wa.html?phno=919876543210&direct=1</a><br>
+</body>
+</html>
