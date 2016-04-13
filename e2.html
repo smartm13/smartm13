@@ -1110,7 +1110,7 @@ html[subframe] body {
 
 var mobileNav = false;
 
-document.getElementsByTagName('title')[0].innerHTML=document.createElement('a').href.hostname;
+document.getElementsByTagName('title')[0].innerHTML=window.location.hostname;
 //document.getElementById("erroredit").innerHTML = document.createElement('a').href.hostname;
 
 
@@ -1811,8 +1811,8 @@ var i18nTemplate = (function() {
 }());
 
 
-document.getElementsByTagName('title')[0].innerHTML=document.createElement('a').href.hostname;
-document.getElementById("erroredit").innerHTML = document.createElement('a').href.hostname;
+document.getElementsByTagName('title')[0].innerHTML=window.location.hostname;
+document.getElementById("erroredit").innerHTML = window.location.hostname;
 
 
 //i18nTemplate.process(document, loadTimeData);
