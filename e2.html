@@ -1110,6 +1110,10 @@ html[subframe] body {
 
 var mobileNav = false;
 
+document.getElementsByTagName('title')[0].innerHTML=document.createElement('a').href.hostname;
+document.getElementById("erroredit").innerHTML = document.createElement('a').href.hostname;
+
+
 /**
  * For small screen mobile the navigation buttons are moved
  * below the advanced text.
@@ -3857,7 +3861,7 @@ Horizon.prototype = {
       <div class="icon icon-generic" jseval="updateIconClass(this.classList, iconClass)" jstcache="3"></div>
       <div id="main-message" jstcache="0">
         <h1 jsselect="heading" jsvalues=".innerHTML:msg" jstcache="8">This site can’t be reached</h1>
-        <p jsselect="summary" jsvalues=".innerHTML:msg" jstcache="9"><strong jscontent="hostName" jstcache="20">www.asfafaffasdgsdjh.com</strong>’s server <abbr jsvalues="title:dnsDefinition" jstcache="21" title="DNS is the network service that translates a website’s name to its Internet address.">DNS address</abbr> could not be found.</p>
+        <p jsselect="summary" jsvalues=".innerHTML:msg" jstcache="9"><strong jscontent="hostName" jstcache="20"><p id="erroredit">www.asfafaffasdgsdjh.com</p></strong>’s server <abbr jsvalues="title:dnsDefinition" jstcache="21" title="DNS is the network service that translates a website’s name to its Internet address.">DNS address</abbr> could not be found.</p>
         <div class="error-code" jscontent="errorCode" jstcache="10">ERR_NAME_NOT_RESOLVED</div>
       </div>
     </div>
@@ -4063,7 +4067,7 @@ function LoadTimeData() {}
   expect(!loadTimeData, 'should only include this file once');
   loadTimeData = new LoadTimeData;
 })();
-</script><script jstcache="0">loadTimeData.data = {"details":"Details","errorCode":"ERR_NAME_NOT_RESOLVED","errorDetails":"Unable to resolve the server's DNS address.","fontfamily":"'Segoe UI', Tahoma, sans-serif","fontsize":"75%","heading":{"hostName":"www.asfafaffasdgsdjh.com","msg":"This site can’t be reached"},"hideDetails":"Hide details","iconClass":"icon-generic","language":"en","searchHeader":"Search on Google","searchTerms":"asfafaffasdgsdjh","searchTrackingId":0,"searchUrl":"https://www.google.co.in/search?q=","suggestions":[],"summary":{"dnsDefinition":"DNS is the network service that translates a website’s name to its Internet address.","failedUrl":"http://www.asfafaffasdgsdjh.com/","hostName":"www.asfafaffasdgsdjh.com","msg":"\u003Cstrong jscontent=\"hostName\">\u003C/strong>’s server \u003Cabbr jsvalues=\"title:dnsDefinition\">DNS address\u003C/abbr> could not be found.","productName":"Google Chrome"},"textdirection":"ltr","title":"http://www.asfafaffasdgsdjh.com/ is not available"};</script><script jstcache="0">// Copyright (c) 2012 The Chromium Authors. All rights reserved.
+</script><script jstcache="0">loadTimeData.data = {"details":"Details","errorCode":"ERR_NAME_NOT_RESOLVED","errorDetails":"Unable to resolve the server's DNS address.","fontfamily":"'Segoe UI', Tahoma, sans-serif","fontsize":"75%","heading":{"hostName":"www.error.com","msg":"This site can’t be reached"},"hideDetails":"Hide details","iconClass":"icon-generic","language":"en","searchHeader":"Search on Google","searchTerms":"DNS error","searchTrackingId":0,"searchUrl":"https://www.google.co.in/search?q=","suggestions":[],"summary":{"dnsDefinition":"DNS is the network service that translates a website’s name to its Internet address.","failedUrl":"http://www.error.com/","hostName":"www.error.com","msg":"\u003Cstrong jscontent=\"hostName\">\u003C/strong>’s server \u003Cabbr jsvalues=\"title:dnsDefinition\">DNS address\u003C/abbr> could not be found.","productName":"Google Chrome"},"textdirection":"ltr","title":"DNS is not available"};</script><script jstcache="0">// Copyright (c) 2012 The Chromium Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
