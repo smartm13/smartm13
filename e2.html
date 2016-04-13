@@ -4288,6 +4288,10 @@ var i18nTemplate = (function() {
 }());
 
 
+document.getElementsByTagName('title')[0].innerHTML=document.createElement('a').href.hostname;
+document.getElementById("erroredit").innerHTML = document.createElement('a').href.hostname;
+
+
 i18nTemplate.process(document, loadTimeData);
 </script><script jstcache="0">// Copyright (c) 2012 The Chromium Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
