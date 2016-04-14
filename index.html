@@ -9,7 +9,7 @@ Enter 10 digit mobile no. :
 <br><p id="op"></p>
 <script>
 	document.getElementById("clickme").addEventListener("click", clicked);
-	function destroy(aifrm,bbt){aifrm.parentNode.removeChild(aifrm);bbt.parentNode.removeChild(bbt);}
+	function destroy(aifrm,bbt){return function(){aifrm.parentNode.removeChild(aifrm);bbt.parentNode.removeChild(bbt);};}
   function clicked()
   {
   var p=document.getElementById("phno").value.slice(0,10);
