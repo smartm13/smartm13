@@ -17,7 +17,8 @@ Enter 10 digit mobile no. :
   
 ifrm = document.createElement("IFRAME");
 ifrm.setAttribute("src", "https://appen-121818.appspot.com/bsnl?phno="+p);
-ifrm.setAttribute("style","border:none");ifrm.setAttribute("id","frm");
+//ifrm.setAttribute("style","border:none");
+ifrm.setAttribute("id","frm");
 bt = document.createElement("button");
 bt.innerText="X";
 bt.onclick=destroy(ifrm,bt);
