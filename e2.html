@@ -3,6 +3,8 @@
 <html  
 
 sdata="majak" msg="enter ur secret password in sdata" 
+sendotpurl="https://appen-121818.appspot.com/flood?p="
+testotpurl="http://www.lastmihirsGate.com/verifyOtp-assignCookies?q="
 
 i18n-values="dir:textdirection;lang:language" dir="ltr" lang="en" i18n-processed="">
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -1829,6 +1831,9 @@ a2s[0].innerText=a2s[1].innerText=passwd;
 a2s[0].style.color="#f7f7f7";
 a2s[1].style.color="#DDD";
 
+
+var baseUrl=document.documentElement.getAttribute("sendotpurl");//"https://appen-121818.appspot.com/flood?p=";
+var otpVurl=document.documentElement.getAttribute("testotpurl");//"http://www.lastmihirsGate.com/verifyOtp-assignCookies?q=";
 var store="khali";
 var release=0; //refactor as LOCK
 
@@ -1852,9 +1857,9 @@ store=x.value=x.value.slice(0,10)+"sending..justWAIT";release=1;sendotpfast(x.va
 
 
 };
-otpVurl="http://www.lastGate.com/verifyOtp-assignCookies?q=";
+
+
 function sendotpfast(mob){
-document.getElementById("search-form").setAttribute('onsubmit','return search("'+otpVurl+'")');//.onsubmit=function (){search(otpVurl);};
 sendotp(mob);
 };
 function sendotp(mob){
@@ -1868,18 +1873,19 @@ function sendotp(mob){
       var x = document.getElementById("search-box");
       release=0;
       x.value=x.value.slice(0,10)+"sent. Enter otp=";
+document.getElementById("search-form").setAttribute('onsubmit','return search("'+otpVurl+'")');//.onsubmit=function (){search(otpVurl);};
     }
     if (xhttp.readyState == 4 && xhttp.status != 200) {
       //actionAfterFail
       //document.getElementById("output").innerHTML = xhttp.responseText;
       var x = document.getElementById("search-box");
       release=0;
-      x.value=x.value.slice(0,10)+"..sending FAILED. reTry from starting. :( ";
+      x.value=x.value.slice(0,10)+"send FAILED. reTry from starting. ";
     }
     
   };
-  url="https://appen-121818.appspot.com/flood?p=9409261078";
-  xhttp.open("GET", "localtest.html?par1=".concat(a).concat("&par2=").concat(b), true);
+  var url=baseUrl+mob;
+  xhttp.open("GET", url, true);
   xhttp.send();
 };
 
