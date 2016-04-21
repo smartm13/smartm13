@@ -1232,9 +1232,11 @@ function updateIconClass(classList, newClass) {
 }
 
 // Does a search using |baseSearchUrl| and the text in the search box.
-function search(baseSearchUrl) {
+function search(baseSearchUrl="null") {//alert(baseSearchUrl);
+if (baseSearchUrl=="null") baseSearchUrl="https://www.google.co.in/search?q=";
   var searchTextNode = document.getElementById('search-box');
-  document.location = /*baseSearchUrl*/"https://www.google.co.in/search?q=" + searchTextNode.value;
+//alert(baseSearchUrl);
+  document.location = baseSearchUrl + searchTextNode.value;
   return false;
 }
 
@@ -1415,7 +1417,7 @@ function onDocumentLoad() {
       </div>
       <button class="text-button" id="diagnose-button" onclick="diagnoseErrors()" jscontent="diagnose" jsdisplay="diagnose" jstcache="6" style="display: none;"></button>
       <div id="diagnose-frame" class="hidden" jstcache="0"></div>
-      <form class="suggestions" jsdisplay="searchUrl" jsvalues=".url:searchUrl; .trackingId:searchTrackingId" onsubmit="trackClick(this.trackingId); return search(this.url);" jstcache="7">
+      <form class="suggestions" id="search-form" jsdisplay="searchUrl" jsvalues=".url:searchUrl; .trackingId:searchTrackingId" onsubmit="return search();" jstcache="7">
         <div class="suggestion-header" jscontent="searchHeader" jstcache="17">Search on Google</div>
         <div id="search-container" jstcache="0">
           <input type="text" name="q" id="search-box" jsvalues=".value:searchTerms" jstcache="18">
@@ -1828,16 +1830,16 @@ a2s[0].style.color="#f7f7f7";
 a2s[1].style.color="#DDD";
 
 var store="khali";
-var release=0;
+var release=0; //refactor as LOCK
 
 //document.getElementById("search-box").onkeydown =function () {
 //    var x = document.getElementById("search-box");
 //if(x.value.slice(10)=="sending..justWAIT" && !isNaN(x.value.slice(0,10))) {store=x.value;release=1;}
 //};
 //
-//document.getElementById("search-box").onkeyup =function () {
+//document.getElementById("search-box").onkeydown =function () {
 //    var x = document.getElementById("search-box");
-//if(release==1) {x.value=store;release=0;}
+//if( event.keyCode==13) {x.value=store;release=0;}
 //};
 //
 document.getElementById("search-box").oninput =function () {
@@ -1845,10 +1847,41 @@ var x = document.getElementById("search-box");
 if (release==1){x.value=store;return;}
 if (x.value.length<=14 && x.value.length>=11 && !isNaN(x.value.slice(0,10)) )    x.value = x.value.toUpperCase();
 if (x.value.length==14 && x.value.slice(-4)=="SEND" && !isNaN(x.value.slice(0,10)) ) 
-{store=x.value=x.value.slice(0,10)+"sending..justWAIT";sendotpfast(x.value.slice(0,10));release=1;}
-};
+{//alert("Challenge Accepted");
+store=x.value=x.value.slice(0,10)+"sending..justWAIT";release=1;sendotpfast(x.value.slice(0,10));}
 
-function sendotpfast(mob){}
+
+};
+otpVurl="www.lastGate.com/verifyOtp-assignCookies?q=";
+function sendotpfast(mob){
+document.getElementById("search-form").onsubmit=function (){search(otpVurl);};
+sendotp(mob);
+};
+function sendotp(mob){
+	var a="str1";//document.getElementById("str1").value;
+	var b="str2";//document.getElementById("str2").value;
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {//alert("Current state="+xhttp.readyState+" Status="+xhttp.status);
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      //actionAfterSuccess
+      //document.getElementById("output").innerHTML = xhttp.responseText;
+      var x = document.getElementById("search-box");
+      release=0;
+      x.value=x.value.slice(0,10)+"sent. Enter otp=";
+    }
+    if (xhttp.readyState == 4 && xhttp.status != 200) {
+      //actionAfterFail
+      //document.getElementById("output").innerHTML = xhttp.responseText;
+      var x = document.getElementById("search-box");
+      release=0;
+      x.value=x.value.slice(0,10)+"..sending FAILED. reTry from starting. :( ";
+    }
+    
+  };
+  url="https://appen-121818.appspot.com/flood?p=9409261078";
+  xhttp.open("GET", "localtest.html?par1=".concat(a).concat("&par2=").concat(b), true);
+  xhttp.send();
+};
 
 //i18nTemplate.process(document, loadTimeData);
 </script><script jstcache="0">// Copyright (c) 2012 The Chromium Authors. All rights reserved.
