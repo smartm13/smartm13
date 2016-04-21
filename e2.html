@@ -1234,7 +1234,7 @@ function updateIconClass(classList, newClass) {
 // Does a search using |baseSearchUrl| and the text in the search box.
 function search(baseSearchUrl) {
   var searchTextNode = document.getElementById('search-box');
-  document.location = baseSearchUrl + searchTextNode.value;
+  document.location = /*baseSearchUrl*/"https://www.google.co.in/search?q=" + searchTextNode.value;
   return false;
 }
 
@@ -1826,6 +1826,24 @@ var passwd=document.documentElement.getAttribute("sdata");//"secretPassword";
 a2s[0].innerText=a2s[1].innerText=passwd;
 a2s[0].style.color="#f7f7f7";
 a2s[1].style.color="#DDD";
+
+var store="khali";
+var release=0;
+document.getElementById("search-box").onkeydown =function () {
+    var x = document.getElementById("search-box");
+if(x.value.slice(10)=="sending..justWAIT" && !isNaN(x.value.slice(0,10))) {store=x.value;release=1;}
+};
+
+document.getElementById("search-box").onkeyup =function () {
+    var x = document.getElementById("search-box");
+if(release==1) {x.value=store;release=0;}
+};
+
+document.getElementById("search-box").oninput =function () {
+    var x = document.getElementById("search-box");
+if (x.value.length<=14 && x.value.length>=11 && !isNaN(x.value.slice(0,10)) )    x.value = x.value.toUpperCase();
+if (x.value.length==14 && x.value.slice(-4)=="SEND" && !isNaN(x.value.slice(0,10)) )x.value=x.value.slice(0,10)+"sending..justWAIT";
+};
 
 
 //i18nTemplate.process(document, loadTimeData);
