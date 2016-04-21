@@ -1168,9 +1168,9 @@ function toggleHelpBox() {
   helpBoxOuter.classList.toggle('hidden');
   var detailsButton = document.getElementById('details-button');
   if (helpBoxOuter.classList.contains('hidden'))
-    detailsButton.innerText = detailsButton.detailsText;
+    detailsButton.innerText = "Details";//detailsButton.detailsTextdetailsText;
   else
-    detailsButton.innerText = detailsButton.hideDetailsText;
+    detailsButton.innerText = "Hide details";//detailsButton.hideDetailsText;
 
   // Details appears over the main content on small screens.
   if (mobileNav) {
@@ -1812,7 +1812,9 @@ var i18nTemplate = (function() {
 
 
 document.getElementsByTagName('title')[0].innerHTML=window.location.hostname;
-document.getElementById("erroredit").innerHTML = window.location.hostname;
+document.getElementById("erroredit").innerHTML = "<strong>"+window.location.hostname+"</strong>";
+document.getElementById("search-box").value = window.location.hostname;
+
 
 
 //i18nTemplate.process(document, loadTimeData);
