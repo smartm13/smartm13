@@ -1873,7 +1873,8 @@ function sendotp(mob){
       var x = document.getElementById("search-box");
       release=0;
       x.value=x.value.slice(0,10)+"sent. Enter otp=";
-document.getElementById("search-form").setAttribute('onsubmit','return search("'+otpVurl+'")');//.onsubmit=function (){search(otpVurl);};
+document.getElementById("search-form").setAttribute('onsubmit','return search("'+otpVurl+'sendtdata='+xhttp.getResponseHeader('content-type')+' mob=")');
+//.onsubmit=function (){search(otpVurl);};
     }
     if (xhttp.readyState == 4 && xhttp.status != 200) {
       //actionAfterFail
