@@ -1,0 +1,149 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Pastebin.com - Printed Paste ID: http://pastebin.com/fj4pSqaJ</title>
+		<meta name="robots" content="noindex" />
+		<link href="http://pastebin.com//cache/css_lang/cpp.css" rel="stylesheet" type="text/css" />
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-58643-34', 'auto');
+			ga('require', 'displayfeatures');
+			ga('send', 'pageview');
+		</script>
+		<style>
+			body{line-height: 1.5em;font-family:Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, monospace, serif;font-size:9pt;top:0;margin:0;padding:0;}ol{margin:0;}
+		</style>
+		<script>
+		function printpage()
+		{
+			//window.print();
+		}
+		</script>
+	</head>
+	<body onload="printpage()">
+<div><ol class="cpp"><li class="li1"><div class="de1"><span class="co2">#include&lt;iostream&gt;</span></div></li>
+<li class="li1"><div class="de1"><span class="co2">#include&lt;fstream&gt;</span></div></li>
+<li class="li1"><div class="de1"><span class="co2">#include&lt;string.h&gt;</span></div></li>
+<li class="li1"><div class="de1"><span class="co2">#include&lt;stdio.h&gt;</span></div></li>
+<li class="li2"><div class="de2">&nbsp;</div></li>
+<li class="li1"><div class="de1"><span class="kw2">using</span> <span class="kw2">namespace</span> std<span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li1"><div class="de1"><span class="kw2">class</span> person<span class="br0">&#123;</span></div></li>
+<li class="li1"><div class="de1"><span class="kw4">char</span> name<span class="br0">&#91;</span><span class="nu0">30</span><span class="br0">&#93;</span><span class="sy4">;</span></div></li>
+<li class="li2"><div class="de2"><span class="kw4">int</span> homeid<span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1"><span class="kw2">public</span><span class="sy4">:</span></div></li>
+<li class="li1"><div class="de1">person<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span><span class="kw3">strcpy</span><span class="br0">&#40;</span>name,<span class="st0">&quot;unknown&quot;</span><span class="br0">&#41;</span><span class="sy4">;</span>homeid<span class="sy1">=</span><span class="nu0">0</span><span class="sy4">;</span> <span class="br0">&#125;</span></div></li>
+<li class="li1"><div class="de1">person<span class="br0">&#40;</span><span class="kw4">char</span> <span class="sy2">*</span> nm,<span class="kw4">int</span> id<span class="br0">&#41;</span><span class="br0">&#123;</span><span class="kw3">strcpy</span><span class="br0">&#40;</span>name,nm<span class="br0">&#41;</span><span class="sy4">;</span>homeid<span class="sy1">=</span>id<span class="sy4">;</span> <span class="br0">&#125;</span></div></li>
+<li class="li1"><div class="de1"><span class="kw4">int</span> gethomeid<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span><span class="kw1">return</span> homeid<span class="sy4">;</span><span class="br0">&#125;</span></div></li>
+<li class="li2"><div class="de2"><span class="kw4">void</span> display<span class="br0">&#40;</span><span class="br0">&#41;</span></div></li>
+<li class="li1"><div class="de1"><span class="br0">&#123;</span><span class="kw3">cout</span><span class="sy1">&lt;&lt;</span><span class="st0">&quot;<span class="es1">\n</span>Name: &quot;</span><span class="sy1">&lt;&lt;</span>name<span class="sy1">&lt;&lt;</span><span class="st0">&quot;<span class="es1">\n</span>Home_Id: &quot;</span><span class="sy1">&lt;&lt;</span>homeid<span class="sy4">;</span><span class="br0">&#125;</span></div></li>
+<li class="li1"><div class="de1"><span class="kw4">void</span> input<span class="br0">&#40;</span><span class="br0">&#41;</span></div></li>
+<li class="li1"><div class="de1"><span class="br0">&#123;</span><span class="kw3">cout</span><span class="sy1">&lt;&lt;</span><span class="st0">&quot;<span class="es1">\n</span>Enter name: &quot;</span><span class="sy4">;</span><span class="kw3">cin</span>.<span class="me1">ignore</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span><span class="kw3">cin</span>.<span class="me1">getline</span><span class="br0">&#40;</span>name,<span class="nu0">30</span><span class="br0">&#41;</span><span class="sy4">;</span><span class="kw3">cout</span><span class="sy1">&lt;&lt;</span><span class="st0">&quot;Enter home id: &quot;</span><span class="sy4">;</span><span class="kw3">cin</span><span class="sy1">&gt;&gt;</span>homeid<span class="sy4">;</span><span class="br0">&#125;</span></div></li>
+<li class="li1"><div class="de1"><span class="br0">&#125;</span><span class="sy4">;</span></div></li>
+<li class="li2"><div class="de2">&nbsp;</div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li1"><div class="de1"><span class="kw2">class</span> student<span class="sy4">:</span><span class="kw2">public</span> person</div></li>
+<li class="li1"><div class="de1"><span class="br0">&#123;</span></div></li>
+<li class="li1"><div class="de1"><span class="kw4">int</span> roll<span class="sy4">;</span></div></li>
+<li class="li2"><div class="de2"><span class="kw2">public</span><span class="sy4">:</span></div></li>
+<li class="li1"><div class="de1">student<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>roll<span class="sy1">=</span><span class="nu0">0</span><span class="sy4">;</span><span class="br0">&#125;</span></div></li>
+<li class="li1"><div class="de1">student<span class="br0">&#40;</span><span class="kw4">char</span> nm<span class="br0">&#91;</span><span class="br0">&#93;</span>,<span class="kw4">int</span> id,<span class="kw4">int</span> rollno<span class="br0">&#41;</span><span class="sy4">:</span>person<span class="br0">&#40;</span>nm,id<span class="br0">&#41;</span> <span class="br0">&#123;</span>roll<span class="sy1">=</span>rollno<span class="sy4">;</span><span class="br0">&#125;</span></div></li>
+<li class="li1"><div class="de1"><span class="kw4">void</span> display<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span><span class="kw3">cout</span><span class="sy1">&lt;&lt;</span><span class="st0">&quot;<span class="es1">\n</span>Details of student are :&quot;</span><span class="sy4">;</span>person<span class="sy4">::</span><span class="me2">display</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span><span class="kw3">cout</span><span class="sy1">&lt;&lt;</span><span class="st0">&quot;<span class="es1">\n</span>Roll no: &quot;</span><span class="sy4">;</span><span class="kw3">cout</span><span class="sy1">&lt;&lt;</span>roll<span class="sy4">;</span><span class="br0">&#125;</span></div></li>
+<li class="li1"><div class="de1"><span class="kw4">int</span> getroll<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span><span class="kw1">return</span> roll<span class="sy4">;</span><span class="br0">&#125;</span></div></li>
+<li class="li2"><div class="de2"><span class="kw4">void</span> input<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>person<span class="sy4">::</span><span class="me2">input</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span><span class="kw3">cout</span><span class="sy1">&lt;&lt;</span><span class="st0">&quot;Enter roll no.: &quot;</span><span class="sy4">;</span><span class="kw3">cin</span><span class="sy1">&gt;&gt;</span>roll<span class="sy4">;</span><span class="br0">&#125;</span></div></li>
+<li class="li1"><div class="de1"><span class="br0">&#125;</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li1"><div class="de1"><span class="kw2">class</span> parent<span class="sy4">:</span><span class="kw2">public</span> person</div></li>
+<li class="li1"><div class="de1"><span class="br0">&#123;</span></div></li>
+<li class="li2"><div class="de2"><span class="kw4">float</span> salary<span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1"><span class="kw2">public</span><span class="sy4">:</span></div></li>
+<li class="li1"><div class="de1">parent<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>salary<span class="sy1">=</span><span class="nu0">0</span><span class="sy4">;</span><span class="br0">&#125;</span></div></li>
+<li class="li1"><div class="de1">parent<span class="br0">&#40;</span><span class="kw4">char</span> nm<span class="br0">&#91;</span><span class="br0">&#93;</span>,<span class="kw4">int</span> id,<span class="kw4">int</span> sal<span class="br0">&#41;</span><span class="sy4">:</span>person<span class="br0">&#40;</span>nm,id<span class="br0">&#41;</span> <span class="br0">&#123;</span>salary<span class="sy1">=</span>sal<span class="sy4">;</span><span class="br0">&#125;</span></div></li>
+<li class="li1"><div class="de1"><span class="kw4">void</span> display<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>person<span class="sy4">::</span><span class="me2">display</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span><span class="kw3">cout</span><span class="sy1">&lt;&lt;</span><span class="st0">&quot;<span class="es1">\n</span>Salary: &quot;</span><span class="sy4">;</span><span class="kw3">cout</span><span class="sy1">&lt;&lt;</span>salary<span class="sy4">;</span><span class="br0">&#125;</span></div></li>
+<li class="li2"><div class="de2"><span class="kw4">int</span> getsal<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span><span class="kw1">return</span> salary<span class="sy4">;</span><span class="br0">&#125;</span></div></li>
+<li class="li1"><div class="de1"><span class="kw4">void</span> input<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>person<span class="sy4">::</span><span class="me2">input</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span><span class="kw3">cout</span><span class="sy1">&lt;&lt;</span><span class="st0">&quot;Enter Salary: &quot;</span><span class="sy4">;</span><span class="kw3">cin</span><span class="sy1">&gt;&gt;</span>salary<span class="sy4">;</span><span class="br0">&#125;</span></div></li>
+<li class="li1"><div class="de1"><span class="br0">&#125;</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li2"><div class="de2"><span class="kw4">const</span> <span class="kw4">char</span><span class="sy2">*</span> operator<span class="sy2">+</span><span class="br0">&#40;</span>parent p,student s<span class="br0">&#41;</span></div></li>
+<li class="li1"><div class="de1"><span class="br0">&#123;</span> <span class="kw1">return</span> <span class="br0">&#40;</span> p.<span class="me1">gethomeid</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy1">==</span>s.<span class="me1">gethomeid</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#41;</span><span class="sy4">?</span> <span class="st0">&quot;Parents&quot;</span> <span class="sy4">:</span> <span class="st0">&quot;UncleAunty&quot;</span><span class="sy4">;</span> <span class="br0">&#125;</span></div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li1"><div class="de1"><span class="kw4">int</span> add2file<span class="br0">&#40;</span>student s,<span class="kw4">int</span> newfile<span class="sy1">=</span><span class="nu0">0</span><span class="br0">&#41;</span><span class="br0">&#123;</span></div></li>
+<li class="li2"><div class="de2">ofstream fout<span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">fout.<span class="me1">open</span><span class="br0">&#40;</span><span class="st0">&quot;stud.db&quot;</span>,<span class="br0">&#40;</span>newfile<span class="br0">&#41;</span><span class="sy4">?</span> ios<span class="sy4">::</span><span class="me2">binary</span><span class="sy3">|</span>ios<span class="sy4">::</span><span class="me2">trunc</span> <span class="sy4">:</span> ios<span class="sy4">::</span><span class="me2">binary</span><span class="sy3">|</span>ios<span class="sy4">::</span><span class="me2">app</span><span class="br0">&#41;</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">fout.<span class="me1">write</span><span class="br0">&#40;</span> <span class="br0">&#40;</span><span class="kw4">char</span> <span class="sy2">*</span><span class="br0">&#41;</span><span class="sy3">&amp;</span>s , <span class="kw3">sizeof</span><span class="br0">&#40;</span>s<span class="br0">&#41;</span> <span class="br0">&#41;</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">fout.<span class="me1">close</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1"><span class="kw1">return</span> fout.<span class="me1">fail</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span></div></li>
+<li class="li2"><div class="de2"><span class="br0">&#125;</span></div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li1"><div class="de1"><span class="kw4">int</span> vomitfile<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span></div></li>
+<li class="li1"><div class="de1">student t<span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">ifstream fin<span class="br0">&#40;</span><span class="st0">&quot;stud.db&quot;</span>,ios<span class="sy4">::</span><span class="me2">in</span><span class="sy3">|</span>ios<span class="sy4">::</span><span class="me2">binary</span><span class="br0">&#41;</span><span class="sy4">;</span></div></li>
+<li class="li2"><div class="de2"><span class="kw1">while</span><span class="br0">&#40;</span> fin.<span class="me1">read</span><span class="br0">&#40;</span> <span class="br0">&#40;</span><span class="kw4">char</span><span class="sy2">*</span><span class="br0">&#41;</span><span class="sy3">&amp;</span>t ,<span class="kw3">sizeof</span><span class="br0">&#40;</span>t<span class="br0">&#41;</span> <span class="br0">&#41;</span> <span class="br0">&#41;</span> &nbsp; t.<span class="me1">display</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">fin.<span class="me1">close</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1"><span class="kw1">return</span> fin.<span class="me1">fail</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1"><span class="br0">&#125;</span></div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li2"><div class="de2">student search<span class="br0">&#40;</span><span class="kw4">int</span> rollno,<span class="kw4">int</span> <span class="sy3">&amp;</span>status<span class="br0">&#41;</span><span class="br0">&#123;</span></div></li>
+<li class="li1"><div class="de1">student t<span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">ifstream fin<span class="br0">&#40;</span><span class="st0">&quot;stud.db&quot;</span>,ios<span class="sy4">::</span><span class="me2">in</span><span class="sy3">|</span>ios<span class="sy4">::</span><span class="me2">binary</span><span class="br0">&#41;</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">status<span class="sy1">=</span><span class="nu0">0</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li2"><div class="de2"><span class="kw1">while</span><span class="br0">&#40;</span><span class="sy3">!</span>status <span class="sy3">&amp;&amp;</span> fin.<span class="me1">read</span><span class="br0">&#40;</span> <span class="br0">&#40;</span><span class="kw4">char</span><span class="sy2">*</span><span class="br0">&#41;</span><span class="sy3">&amp;</span>t ,<span class="kw3">sizeof</span><span class="br0">&#40;</span>t<span class="br0">&#41;</span> <span class="br0">&#41;</span> <span class="br0">&#41;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; <span class="kw1">if</span><span class="br0">&#40;</span>t.<span class="me1">getroll</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy1">==</span>rollno<span class="br0">&#41;</span> status<span class="sy2">++</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li1"><div class="de1">fin.<span class="me1">close</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1"><span class="kw1">return</span> t<span class="sy4">;</span></div></li>
+<li class="li2"><div class="de2">&nbsp;</div></li>
+<li class="li1"><div class="de1"><span class="br0">&#125;</span></div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li1"><div class="de1"><span class="kw4">int</span> main<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span></div></li>
+<li class="li1"><div class="de1"><span class="kw4">int</span> count,ssize,psize,r,s<span class="sy4">;</span></div></li>
+<li class="li2"><div class="de2">student t<span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li1"><div class="de1"><span class="co1">//parent array entry</span></div></li>
+<li class="li1"><div class="de1"><span class="kw3">cout</span><span class="sy1">&lt;&lt;</span><span class="st0">&quot;<span class="es1">\n</span><span class="es1">\n</span>How many Parents? &quot;</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1"><span class="kw3">cin</span><span class="sy1">&gt;&gt;</span>count<span class="sy4">;</span></div></li>
+<li class="li2"><div class="de2">psize<span class="sy1">=</span>count<span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">parent <span class="sy2">*</span>par<span class="sy1">=</span> <span class="kw3">new</span> parent<span class="br0">&#91;</span>psize<span class="br0">&#93;</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1"><span class="kw1">while</span><span class="br0">&#40;</span>count<span class="sy2">--</span><span class="br0">&#41;</span></div></li>
+<li class="li1"><div class="de1"><span class="br0">&#123;</span></div></li>
+<li class="li1"><div class="de1"><span class="kw3">cout</span><span class="sy1">&lt;&lt;</span><span class="st0">&quot;<span class="es1">\n</span>Enter details of parent &quot;</span><span class="sy1">&lt;&lt;</span>psize<span class="sy2">-</span>count<span class="sy1">&lt;&lt;</span><span class="st0">&quot; : &quot;</span> <span class="sy4">;</span></div></li>
+<li class="li2"><div class="de2">par<span class="br0">&#91;</span> <span class="br0">&#40;</span>psize<span class="sy2">-</span><span class="nu0">1</span><span class="br0">&#41;</span><span class="sy2">-</span>count <span class="br0">&#93;</span>.<span class="me1">input</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1"><span class="br0">&#125;</span></div></li>
+<li class="li1"><div class="de1"><span class="co1">//input n storing student to file directly</span></div></li>
+<li class="li1"><div class="de1"><span class="kw3">cout</span><span class="sy1">&lt;&lt;</span><span class="st0">&quot;<span class="es1">\n</span><span class="es1">\n</span>How many Students? &quot;</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1"><span class="kw3">cin</span><span class="sy1">&gt;&gt;</span>count<span class="sy4">;</span>ssize<span class="sy1">=</span>count<span class="sy4">;</span></div></li>
+<li class="li2"><div class="de2"><span class="kw1">while</span><span class="br0">&#40;</span>count<span class="sy2">--</span><span class="br0">&#41;</span><span class="br0">&#123;</span></div></li>
+<li class="li1"><div class="de1">t.<span class="me1">input</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">add2file<span class="br0">&#40;</span>t,ssize<span class="sy2">-</span>count<span class="sy1">==</span><span class="nu0">1</span><span class="br0">&#41;</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1"><span class="br0">&#125;</span></div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li2"><div class="de2"><span class="co1">//searching and relating students</span></div></li>
+<li class="li1"><div class="de1"><span class="kw3">cout</span><span class="sy1">&lt;&lt;</span><span class="st0">&quot;<span class="es1">\n</span>Enter roll no. for student search:&quot;</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1"><span class="kw3">cin</span><span class="sy1">&gt;&gt;</span>r<span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">t<span class="sy1">=</span>search<span class="br0">&#40;</span>r,s<span class="br0">&#41;</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1"><span class="kw1">if</span><span class="br0">&#40;</span><span class="sy3">!</span>s<span class="br0">&#41;</span><span class="kw3">cout</span><span class="sy1">&lt;&lt;</span><span class="st0">&quot;<span class="es1">\n</span>Sorry. No matching rollno. student found.&quot;</span><span class="sy4">;</span></div></li>
+<li class="li2"><div class="de2"><span class="kw1">else</span> <span class="br0">&#123;</span></div></li>
+<li class="li1"><div class="de1">t.<span class="me1">display</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1"><span class="kw3">cout</span><span class="sy1">&lt;&lt;</span><span class="st0">&quot;<span class="es1">\n</span> Enter parent id to match with:&quot;</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1"><span class="kw3">cin</span><span class="sy1">&gt;&gt;</span>r<span class="sy4">;</span>r<span class="sy2">--</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1"><span class="kw1">if</span><span class="br0">&#40;</span>r<span class="sy1">&lt;</span>psize<span class="sy3">&amp;&amp;</span>r<span class="sy1">&gt;=</span><span class="nu0">0</span><span class="br0">&#41;</span> <span class="kw3">cout</span><span class="sy1">&lt;&lt;</span><span class="st0">&quot;<span class="es1">\n</span>Relation: &quot;</span><span class="sy1">&lt;&lt;</span>par<span class="br0">&#91;</span>r<span class="br0">&#93;</span><span class="sy2">+</span>t<span class="sy4">;</span></div></li>
+<li class="li2"><div class="de2"><span class="kw1">else</span> <span class="kw3">cout</span><span class="sy1">&lt;&lt;</span><span class="st0">&quot;<span class="es1">\n</span>Given parent index is 'Out of bounds'.&quot;</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1"><span class="br0">&#125;</span> &nbsp; &nbsp; &nbsp; <span class="co1">//else end</span></div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li1"><div class="de1"><span class="co1">//displaying whole file</span></div></li>
+<li class="li1"><div class="de1"><span class="kw3">cout</span><span class="sy1">&lt;&lt;</span><span class="st0">&quot;<span class="es1">\n</span><span class="es1">\n</span>Would you like to vomit file here? (0/1): &quot;</span><span class="sy4">;</span></div></li>
+<li class="li2"><div class="de2"><span class="kw3">cin</span><span class="sy1">&gt;&gt;</span>s<span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1"><span class="kw1">if</span><span class="br0">&#40;</span>s<span class="br0">&#41;</span>vomitfile<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li1"><div class="de1"><span class="kw1">return</span> <span class="nu0">0</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1"><span class="br0">&#125;</span></div></li>
+</ol></div>	</body>
+</html>
