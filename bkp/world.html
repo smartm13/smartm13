@@ -1,0 +1,35 @@
+<html>
+<title>SMS Spammer</title>
+<body>
+Enter 10 digit mobile no. along with CC:
+<input type="text" placeholder="only Last 10 digits will b taken" id="phno" onkeydown = "if (event.keyCode == 13)
+                        document.getElementById('clickme').click()" size=40 onclick = "document.getElementById('phno').size=13"
+                        onfocusout="if (document.getElementById('phno').value.length == 0) {document.getElementById('phno').size=40}"/>
+<br><button id="clickme">Let's Kill'em</button>
+<br><p id="op"></p>
+<script>
+	document.getElementById("clickme").addEventListener("click", clicked);
+	function destroy(aifrm,bbt){return function(){aifrm.parentNode.removeChild(aifrm);bbt.parentNode.removeChild(bbt);};}
+  function clicked()
+  {
+  var p=document.getElementById("phno").value;//.slice(0,10);
+  //if (isNaN(p)) {return 0;}
+  
+ifrm = document.createElement("IFRAME");
+ifrm.setAttribute("src", "https://appen-121818.appspot.com/bsnl?phno="+p);
+ifrm.setAttribute("style","display:;border:none;width:225px;margin-bottom:15px");
+ifrm.setAttribute("id","frm");
+bt = document.createElement("button");
+bt.innerText="X";
+bt.style="vertical-align:top; display:inline; margin-left:17px";
+bt.onclick=destroy(ifrm,bt);
+//ifrm.style.width = 640+"px";
+//ifrm.style.height = 480+"px";
+document.body.appendChild(bt);
+document.body.appendChild(ifrm);
+
+  //window.location="https://appen-121818.appspot.com/bsnl?phno="+p;
+  }
+</script>
+</body>
+</html>
