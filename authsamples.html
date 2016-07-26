@@ -108,7 +108,8 @@
 			console.log(resp);
 			var dd=resp['connections'];
 			dd=dd.sort(function (a,b){
-			return a["resourceName"]<=b["resourceName"];//a['metadata']['sources'][0]['id'] > b['metadata']['sources'][0]['id'];
+			return /*a["resourceName"]<=b["resourceName"]*/a['metadata']['sources'][0]['id'] > b['metadata']['sources'][0]['id']
+			?1:-1;
 			});
             var p = document.createElement('p');
             var name = JSON.stringify(dd);//.names[0].givenName;
