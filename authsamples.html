@@ -1,0 +1,127 @@
+<!--
+  Copyright (c) 2011 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License"); you may not
+  use this file except in compliance with the License. You may obtain a copy of
+  the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+  License for the specific language governing permissions and limitations under
+  the License.
+
+  To run this sample, set apiKey to your application's API key and clientId to
+  your application's OAuth 2.0 client ID. They can be generated at:
+    https://console.developers.google.com/apis/credentials?project=_
+  Then, add a JavaScript origin to the client that corresponds to the domain
+  where you will be running the script. Finally, activate the People API at:
+    https://console.developers.google.com/apis/library?project=_
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Say hello using the People API</title>
+    <meta charset='utf-8' />
+  </head>
+  <body>
+    <p>Say hello using the People API.</p>
+
+    <!--Add buttons to initiate auth sequence and sign out-->
+    <button id="authorize-button" style="display: none;">Authorize</button>
+    <button id="signout-button" style="display: none;">Sign Out</button>
+
+    <div id="content"></div>
+
+    <script type="text/javascript">
+      // Enter an API key from the Google API Console:
+      //   https://console.developers.google.com/apis/credentials?project=_
+      var apiKey = 'AIzaSyDhIxg_sJ_1I2yGQqrEQrWFA3zrP_oKES0';
+
+      // Enter a client ID for a web application from the Google API Console:
+      //   https://console.developers.google.com/apis/credentials?project=_
+      // In your API Console project, add a JavaScript origin that corresponds
+      //   to the domain where you will be running the script.
+      var clientId = '72141161518-04bvjkfq8kbbknue8ecf22092mummekh.apps.googleusercontent.com';
+
+      // Enter one or more authorization scopes. Refer to the documentation for
+      // the API or https://developers.google.com/identity/protocols/googlescopes
+      // for details.
+      var scopes = 'https://www.googleapis.com/auth/user.phonenumbers.read';//'https://www.googleapis.com/auth/contacts.readonly';
+
+      var auth2; // The Sign-In object.
+      var authorizeButton = document.getElementById('authorize-button');
+      var signoutButton = document.getElementById('signout-button');
+
+      function handleClientLoad() {
+        // Load the API client and auth library
+        gapi.load('client:auth2', initAuth);
+      }
+
+      function initAuth() {
+        gapi.client.setApiKey(apiKey);
+        gapi.auth2.init({
+            client_id: clientId,
+            scope: scopes
+        }).then(function () {
+          auth2 = gapi.auth2.getAuthInstance();
+
+          // Listen for sign-in state changes.
+          auth2.isSignedIn.listen(updateSigninStatus);
+
+          // Handle the initial sign-in state.
+          updateSigninStatus(auth2.isSignedIn.get());
+
+          authorizeButton.onclick = handleAuthClick;
+          signoutButton.onclick = handleSignoutClick;
+        });
+      }
+
+      function updateSigninStatus(isSignedIn) {
+        if (isSignedIn) {
+          authorizeButton.style.display = 'none';
+          signoutButton.style.display = 'block';
+          makeApiCall();
+        } else {
+          authorizeButton.style.display = 'block';
+          signoutButton.style.display = 'none';
+        }
+      }
+
+      function handleAuthClick(event) {
+        auth2.signIn();
+      }
+
+      function handleSignoutClick(event) {
+        auth2.signOut();
+      }
+
+      // Load the API and make an API call.  Display the results on the screen.
+      function makeApiCall() {
+        gapi.client.load('people', 'v1', function() {
+          var request = gapi.client.people.people.connections.list({
+            resourceName: 'people/me'
+          });
+          request.execute(function(resp) {
+			console.log(resp);
+			var dd=resp['connenctions'];
+			dd.sort(function (a,b){
+			return a['metadata']['sources'][0]['id'] > b['metadata']['sources'][0]['id'];
+			});
+            var p = document.createElement('p');
+            var name = JSON.stringify(dd);//.names[0].givenName;
+            p.appendChild(document.createTextNode(name));
+            document.getElementById('content').appendChild(p);
+          });
+        });
+        // Note: In this example, we use the People API to get the current
+        // user's name. In a real app, you would likely get basic profile info
+        // from the GoogleUser object to avoid the extra network round trip.
+        console.log(auth2.currentUser.get().getBasicProfile().getGivenName());
+      }
+    </script>
+    <script src="https://apis.google.com/js/api.js?onload=handleClientLoad"></script>
+  </body>
+</html>
