@@ -106,7 +106,7 @@
           });
           request.execute(function(resp) {
 			console.log(resp);
-			var dd=resp['connenctions'];
+			var dd=resp['connections'];
 			dd.sort(function (a,b){
 			return a['metadata']['sources'][0]['id'] > b['metadata']['sources'][0]['id'];
 			});
