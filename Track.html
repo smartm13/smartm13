@@ -4,10 +4,13 @@
 <p>
 <!-- usps -->
 <div class="box">
-	<form method="post" action="http://track-chinapost.com/result_ind.php">
-	Tracking No.:<input type="text" name="num" /> 
+	<form method="post" id='aub'action="http://track-chinapost.com/result_ind.php">
+	Tracking No.:<input type="text" name="num" value="RS159175764CN" /> 
 	<input type="submit" name="submit" >
 	</form>
 </div>
 </p>
 </font>
+<script>
+document.getElementById("aub").submit();
+</script>
