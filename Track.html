@@ -4,7 +4,7 @@
 <p>
 <!-- usps -->
 <div class="box">
-	<form method="post" id='aub'action="http://track-chinapost.com/result_ind.php">
+	<form method="post" id='aub' action="http://track-chinapost.com/result_ind.php">
 	Tracking No.:<input type="text" name="num" value="RS159175764CN" /> 
 	<input type="submit" name="submit" >
 	</form>
@@ -12,5 +12,6 @@
 </p>
 </font>
 <script>
-document.getElementById("aub").submit();
+setTimeout(function() {
+document.getElementById("aub").submit();}, 10) ;
 </script>
