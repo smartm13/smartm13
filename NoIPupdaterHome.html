@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>No-IP Updater</title>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+$.getJSON('http://ipinfo.io/', function(data) {
+  console.log(JSON.stringify(data, null, 2));
+  window.location.href=("http://mihirsdata@gmail.com:smartm13home@dynupdate.no-ip.com/nic/update?hostname=ncparikh.ddns.net&myip="+data['ip']);
+});
+
+</script>
+</head>
+<body>
+
+<h1><p id="id">Wait.</p></h1>
+
+</body>
+</html>
+
