@@ -1,5 +1,7 @@
-<html><head>
-  <title>Status Track search for PAN/TAN</title>
+
+<HTML>
+  <HEAD>
+  <TITLE>Status Track search for PAN/TAN</TITLE>
   <script language="javascript">
    function setAction(){
         returnval = false;
@@ -281,177 +283,176 @@
       }
       return true;
     }
-	  
-	  setTimeout(function() {
-document.getElementById("aub").submit();
-}, 5) ;
   </script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="/tan/resources/nsdl.css">
 <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
 
-  <link href="/tan/resources/link.css" rel="stylesheet" type="text/css"><style type="text/css">
-:root #header + #content > #left > #rlblock_left
-{ display: none !important; }</style></head>
+  </HEAD>
 
 <!--<link href="/tan/resources/BodyText.css" rel="stylesheet" type="text/css">-->
-
-<body onload="searchType();" topmargin="0" leftmatgin="0">
+<link href="/tan/resources/link.css" rel="stylesheet" type="text/css">
+<BODY onLoad="searchType();" TOPMARGIN=0 LEFTMATGIN=0 >
 
  <div id="main">
          <div id="main-container">
 
 		      <div id="header">
-				  <img src="/tan/images/logo.png" height="75" width="219" align="right">
+				  <img src="/tan/images/logo.png" height="75" width="219" align = "right">
 				  <!--<div class="tagline">Tax Information Network<br><span class="sub-tagline">of Income Tax Department</span></div>-->
 			  </div>
  <div class="content-area">
 
-<p>
-</p><center>
-<font size="4"><b>Track your PAN/TAN Application Status</b></font>
-</center>
-<p></p>
-<form name="frm_status" method="post" action="https://tin.tin.nsdl.com/tan/servlet/PanStatusTrack" id="aub" onsubmit="return setAction();">
+<P>
+<CENTER>
+<FONT SIZE=4><B>Track your PAN/TAN Application Status</B></FONT>
+</CENTER>
+</P>
+<FORM NAME=frm_status METHOD=post ACTION="#" onSubmit="return setAction();">
 <!--<FORM NAME=frm_status METHOD=post ACTION="StatusTrack" onSubmit="return invalidChars();">-->
-<table border="1" cellpadding="10" cellspacing="1" width="100%">
-<tbody><tr>
-  <td>
-  <table border="0" cellpadding="10" cellspacing="1" width="100%">
+<TABLE BORDER=1 CELLPADDING=10 CELLSPACING=1 WIDTH=100%>
+<TR>
+  <TD>
+  <TABLE BORDER=0 CELLPADDING=10 CELLSPACING=1 WIDTH=100%>
     
     
-      <tbody><tr>
-     <td colspan="3">
-        <font color="RED"><b>Your application is under process at NSDL. You may contact NSDL on (020) 27218080</b></font>
-     </td>
-  </tr>
-
-  <tr>
-     <td colspan="3" width="50%">
+    
+  <TR>
+     <TD COLSPAN=3 WIDTH=50%>
        <b> Please select type of application:</b>
-     </td>
-  </tr>
-   
-  <tr>
-    <td width="3%">&nbsp;</td>
-    <td><b>Application Type</b></td>
-    <td>
-      <select name="ST_SEARCH_TYPE" onchange="searchType();">
-	  <option value=""> -- Select -- </option>
-	  <option value="P" selected=""> PAN -  New / Change Request </option>
-	  <option value="T"> TAN - New / Change Request </option>
-	</select>
-    </td>
-  </tr>
+     </TD>
+  </TR>
+     <TR>
+     <TD COLSPAN=3>
+        <FONT COLOR='RED'><B>Please select a type of search</B></FONT>
+     </TD>
+  </TR>
+
+  <TR>
+    <TD WIDTH='3%'>&nbsp;</TD>
+    <TD><b>Application Type</b></TD>
+    <TD>
+      <SELECT NAME=ST_SEARCH_TYPE onChange='searchType();'>
+	  <OPTION VALUE=""> -- Select -- </OPTION>
+	  <OPTION VALUE="P" > PAN -  New / Change Request </OPTION>
+	  <OPTION VALUE="T"   > TAN - New / Change Request </OPTION>
+	</SELECT>
+    </TD>
+  </TR>
   
+    <TR>
+     <TD COLSPAN=3>
+        <FONT COLOR='RED'><B>Please select Option and fill relevent field</B></FONT>
+     </TD>
+  </TR>
+
+  <TR>
+    <TD VALIGN=BOTTOM WIDTH='3%'><INPUT TYPE=RADIO NAME=ST_SEARCH_OPTION VALUE="A"   onClick="return radioClick('A');"></TD>
+    <TD VALIGN=BOTTOM>
+       <B>ACKNOWLEDGEMENT NUMBER</B>
+    </TD>
+    <TD VALIGN=BOTTOM>
+       <INPUT TYPE=text NAME=ST_ACK_NUM VALUE=""  LENGTH=40 MAXLENGTH=15>
+    </TD>
+  </TR>
   
-  <tr>
-    <td valign="BOTTOM" width="3%"><input type="RADIO" name="ST_SEARCH_OPTION" value="A" checked="" onclick="return radioClick('A');"></td>
-    <td valign="BOTTOM">
-       <b>ACKNOWLEDGEMENT NUMBER</b>
-    </td>
-    <td valign="BOTTOM">
-       <input type="text" name="ST_ACK_NUM" value="881051113982454" length="40" maxlength="15">
-    </td>
-  </tr>
+  <TR>
+    <TD VALIGN=BOTTOM WIDTH='3%'><INPUT TYPE=RADIO NAME=ST_SEARCH_OPTION VALUE="N"   onClick="return radioClick('N');"></TD>
+    <TD VALIGN=BOTTOM><B><FONT COLOR=RED>*</FONT> NAME</B></TD>
+    <TD>
+      <TABLE WIDTH=95% CELLPADDING=0 CELLSPACING=0>
+        <TR VALIGN=BOTTOM>
+          <TD><B>Last Name/Surname</B><BR><INPUT TYPE=text NAME=ST_LST_MN_NM VALUE=""  SIZE=25 MAXLENGTH=75></TD>
+          <TD><B>First Name</B><BR><INPUT TYPE=text NAME=ST_FST_MN_NM VALUE=""  SIZE=25 MAXLENGTH=25></TD>
+          <TD><B>Middle Name</B><BR><INPUT TYPE=text NAME=ST_MDL_MN_NM VALUE=""  SIZE=25 MAXLENGTH=25></TD>
+        </TR>
+      </TABLE>
+   </TD>
+  </TR>
   
-  <tr>
-    <td valign="BOTTOM" width="3%"><input type="RADIO" name="ST_SEARCH_OPTION" value="N" onclick="return radioClick('N');"></td>
-    <td valign="BOTTOM"><b><font color="RED">*</font> NAME</b></td>
-    <td>
-      <table width="95%" cellpadding="0" cellspacing="0">
-        <tbody><tr valign="BOTTOM">
-          <td><b>Last Name/Surname</b><br><input type="text" name="ST_LST_MN_NM" value="" size="25" maxlength="75" disabled=""></td>
-          <td><b>First Name</b><br><input type="text" name="ST_FST_MN_NM" value="" size="25" maxlength="25" disabled=""></td>
-          <td><b>Middle Name</b><br><input type="text" name="ST_MDL_MN_NM" value="" size="25" maxlength="25" disabled=""></td>
-        </tr>
-      </tbody></table>
-   </td>
-  </tr>
-  
-  <tr>
-    <td width="3%">&nbsp;</td>
-    <td valign="TOP" colspan="2">
-      <table cellpadding="0" cellspacing="0" border="0">
-       <tbody><tr>
-          <td valign="BOTTOM"><b>Date of Birth/Incorporation/<br>Agreement/Partnership or <br>Trust Deed/Formation of <br>Body of Individuals/Association of Persons</b>
-          </td>
-          <td valign="TOP"> <font size="-1">DD</font><br>
-                 <select name="ST_DT_BRTH_DD" disabled="">
-                   <option value=""> DD
-                   </option><option value="01"> 1
-                   </option><option value="02"> 2
-                   </option><option value="03"> 3
-                   </option><option value="04"> 4
-                   </option><option value="05"> 5
-                   </option><option value="06"> 6
-                   </option><option value="07"> 7
-                   </option><option value="08"> 8
-                   </option><option value="09"> 9
-                   </option><option value="10"> 10
-                   </option><option value="11"> 11
-                   </option><option value="12"> 12
-                   </option><option value="13"> 13
-                   </option><option value="14"> 14
-                   </option><option value="15"> 15
-                   </option><option value="16"> 16
-                   </option><option value="17"> 17
-                   </option><option value="18"> 18
-                   </option><option value="19"> 19
-                   </option><option value="20"> 20
-                   </option><option value="21"> 21
-                   </option><option value="22"> 22
-                   </option><option value="23"> 23
-                   </option><option value="24"> 24
-                   </option><option value="25"> 25
-                   </option><option value="26"> 26
-                   </option><option value="27"> 27
-                   </option><option value="28"> 28
-                   </option><option value="29"> 29
-                   </option><option value="30"> 30
-                   </option><option value="31"> 31
-                 </option></select>
-         </td>
-         <td valign="TOP"><font size="-1">MM</font><br>
-                 <select name="ST_DT_BRTH_MM" disabled="">
-                   <option value=""> MM
-                   </option><option value="01"> JAN
-                   </option><option value="02"> FEB
-                   </option><option value="03"> MAR
-                   </option><option value="04"> APR
-                   </option><option value="05"> MAY
-                   </option><option value="06"> JUN
-                   </option><option value="07"> JUL
-                   </option><option value="08"> AUG
-                   </option><option value="09"> SEP
-                   </option><option value="10"> OCT
-                   </option><option value="11"> NOV
-                   </option><option value="12"> DEC
-                 </option></select>
-         </td>
-         <td valign="TOP"><font size="-1"> YYYY</font><br>
-             <input type="text" name="ST_DT_BRTH_YYYY" value="" size="4" maxlength="4" disabled="">
-         </td>
-      </tr>
-     </tbody></table>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3">
-    <i><font color="RED"><b>*</b></font>(Name should be as mentioned in the application form. Applicants other than 'Individuals' should write their name in the field for Last Name/Surname only)</i>
-    </td>
-  </tr>
-  <tr>
-    <td align="CENTER" colspan="3">
-      <input type="submit" name="submit" value="SUBMIT" size="10" maxlength="10">
-    </td>
-  </tr>
-  </tbody></table>
-  </td>
-</tr>
-</tbody></table>
-</form>
+  <TR>
+    <TD WIDTH='3%'>&nbsp;</TD>
+    <TD VALIGN=TOP COLSPAN=2>
+      <TABLE CELLPADDING=0 CELLSPACING=0 BORDER=0>
+       <TR>
+          <TD VALIGN=BOTTOM><B>Date of Birth/Incorporation/<BR>Agreement/Partnership or <BR>Trust Deed/Formation of <BR>Body of Individuals/Association of Persons</B>
+          </TD>
+          <TD VALIGN=TOP> <FONT SIZE=-1>DD</FONT><BR>
+                 <SELECT NAME=ST_DT_BRTH_DD >
+                   <OPTION VALUE="" > DD
+                   <OPTION VALUE="01" > 1
+                   <OPTION VALUE="02" > 2
+                   <OPTION VALUE="03" > 3
+                   <OPTION VALUE="04" > 4
+                   <OPTION VALUE="05" > 5
+                   <OPTION VALUE="06" > 6
+                   <OPTION VALUE="07" > 7
+                   <OPTION VALUE="08" > 8
+                   <OPTION VALUE="09" > 9
+                   <OPTION VALUE="10" > 10
+                   <OPTION VALUE="11" > 11
+                   <OPTION VALUE="12" > 12
+                   <OPTION VALUE="13" > 13
+                   <OPTION VALUE="14" > 14
+                   <OPTION VALUE="15" > 15
+                   <OPTION VALUE="16" > 16
+                   <OPTION VALUE="17" > 17
+                   <OPTION VALUE="18" > 18
+                   <OPTION VALUE="19" > 19
+                   <OPTION VALUE="20" > 20
+                   <OPTION VALUE="21" > 21
+                   <OPTION VALUE="22" > 22
+                   <OPTION VALUE="23" > 23
+                   <OPTION VALUE="24" > 24
+                   <OPTION VALUE="25" > 25
+                   <OPTION VALUE="26" > 26
+                   <OPTION VALUE="27" > 27
+                   <OPTION VALUE="28" > 28
+                   <OPTION VALUE="29" > 29
+                   <OPTION VALUE="30" > 30
+                   <OPTION VALUE="31" > 31
+                 </SELECT>
+         </TD>
+         <TD VALIGN=TOP><FONT SIZE=-1>MM</FONT><BR>
+                 <SELECT NAME=ST_DT_BRTH_MM >
+                   <OPTION VALUE="" > MM
+                   <OPTION VALUE="01" > JAN
+                   <OPTION VALUE="02" > FEB
+                   <OPTION VALUE="03" > MAR
+                   <OPTION VALUE="04" > APR
+                   <OPTION VALUE="05" > MAY
+                   <OPTION VALUE="06" > JUN
+                   <OPTION VALUE="07" > JUL
+                   <OPTION VALUE="08" > AUG
+                   <OPTION VALUE="09" > SEP
+                   <OPTION VALUE="10" > OCT
+                   <OPTION VALUE="11" > NOV
+                   <OPTION VALUE="12" > DEC
+                 </SELECT>
+         </TD>
+         <TD VALIGN=TOP><FONT SIZE=-1> YYYY</FONT><BR>
+             <INPUT TYPE=text NAME=ST_DT_BRTH_YYYY VALUE=""  SIZE=4 MAXLENGTH=4>
+         </TD>
+      </TR>
+     </TABLE>
+    </TD>
+  </TR>
+  <TR>
+    <TD COLSPAN=3>
+    <I><FONT COLOR=RED><B>*</B></FONT>(Name should be as mentioned in the application form. Applicants other than 'Individuals' should write their name in the field for Last Name/Surname only)</I>
+    </TD>
+  </TR>
+  <TR>
+    <TD ALIGN=CENTER COLSPAN=3>
+      <INPUT TYPE=submit NAME=submit VALUE="SUBMIT"  SIZE=10 MAXLENGTH=10>
+    </TD>
+  </TR>
+  </TABLE>
+  </TD>
+</TR>
+</TABLE>
+</FORM>
 
 </div>
         </div>
@@ -460,8 +461,7 @@ document.getElementById("aub").submit();
 	</div>
 		<div class="copyright">© Copyright 2010 &nbsp;|&nbsp; NSDL e-Governance Infrastructure Limited (NSDL)</div>
 
+</BODY>
+</HTML>
 
 
-
-
-</body></html>
