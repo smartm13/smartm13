@@ -1,19 +1,467 @@
-<font face="arial">
-<h4>Track China Post parcels to India</h4>
+<html><head>
+  <title>Status Track search for PAN/TAN</title>
+  <script language="javascript">
+   function setAction(){
+        returnval = false;
+        if(invalidChars()){
+         if(document.frm_status.ST_SEARCH_TYPE.value=="P"){
+             document.frm_status.action="/tan/servlet/PanStatusTrack";
+             returnval = true;
+         }
+         if(document.frm_status.ST_SEARCH_TYPE.value=="T"){
+             document.frm_status.action="/tan/servlet/StatusTrack";
+             returnval = true;
+         } 
+        }
+        return returnval;    
+    }
+    function invalidChars() {
+        var length = document.frm_status.elements.length;
+        for( i = 0; i < length; i++ ) {
+            var valueAtI = document.frm_status.elements[i].value;
+            if(( valueAtI.indexOf("~") >= 0) || ( valueAtI.indexOf("^") >= 0) ) {
+                alert("Please do not enter '~' or '^' ");
+                document.frm_status.elements[i].focus();
+                return false;
+            }
+        }
+        return validateAll();		 
+    }
+    function disableAck(){
+      document.frm_status.ST_ACK_NUM.disabled = true;
+    }
+    function enableAck(){
+      document.frm_status.ST_ACK_NUM.disabled = false;
+    }
+    function disableName(){
+      document.frm_status.ST_FST_MN_NM.disabled = true;
+      document.frm_status.ST_MDL_MN_NM.disabled = true;
+      document.frm_status.ST_LST_MN_NM.disabled = true;
+      document.frm_status.ST_DT_BRTH_DD.disabled = true;
+      document.frm_status.ST_DT_BRTH_MM.disabled = true;
+      document.frm_status.ST_DT_BRTH_YYYY.disabled = true;
+    }
+    function enableName(){
+      document.frm_status.ST_FST_MN_NM.disabled = false;
+      document.frm_status.ST_MDL_MN_NM.disabled = false;
+      document.frm_status.ST_LST_MN_NM.disabled = false;
+      document.frm_status.ST_DT_BRTH_DD.disabled = false;
+      document.frm_status.ST_DT_BRTH_MM.disabled = false;
+      document.frm_status.ST_DT_BRTH_YYYY.disabled = false;
+    }
+    function clearAll(){
+      document.frm_status.ST_ACK_NUM.value = "";
+      document.frm_status.ST_FST_MN_NM.value = "";
+      document.frm_status.ST_MDL_MN_NM.value = "";
+      document.frm_status.ST_LST_MN_NM.value = "";
+      document.frm_status.ST_DT_BRTH_DD.value = "DD";
+      document.frm_status.ST_DT_BRTH_MM.value = "MM";
+      document.frm_status.ST_DT_BRTH_YYYY.value = "";
+    }
+    function radioClick(value){
+      clearAll();
+      if(value == 'A'){
+        if(document.frm_status.ST_SEARCH_OPTION[0].checked == true){
+          disableName();
+          enableAck();
+        }
+        else{
+          enableName();
+        }
+      }
+      else if(value == 'N'){
+        if(document.frm_status.ST_SEARCH_OPTION[1].checked == true){
+          disableAck();
+          enableName();
+        }
+        else{
+          enableAck();
+        }
+      }
+    }
+    function searchType(){
+      var searchType = document.frm_status.ST_SEARCH_TYPE.options[document.frm_status.ST_SEARCH_TYPE.selectedIndex].value;
+      if(searchType == ""){
+        loadEvent();
+	document.frm_status.submit.disabled = true;
+      }
+      else if(searchType == "P") {
+	obj_search_option = eval("document.frm_status.ST_SEARCH_OPTION");
+        if(obj_search_option[0].checked) {
+          disableName();
+          enableAck();
+          obj_search_option[0].disabled = false;
+          obj_search_option[0].checked = true;
+          obj_search_option[1].checked = false;
+          obj_search_option[1].disabled = false;
+          document.frm_status.submit.disabled = false;
+        }
+	else if(obj_search_option[1].checked) {
+          enableName();
+          disableAck();
+          obj_search_option[0].disabled = false;
+          obj_search_option[0].checked = false;
+          obj_search_option[1].disabled = false;
+          obj_search_option[1].checked = true;
+          document.frm_status.submit.disabled = false;
+
+        }
+	else {
+	  disableName();
+          enableAck();
+          obj_search_option[0].disabled = false;
+          obj_search_option[0].checked = true;
+          obj_search_option[1].checked = false;
+          obj_search_option[1].disabled = false;
+          document.frm_status.submit.disabled = false;
+	}	
+      }
+      else if(searchType == "T") {
+    	disableName();
+    	enableAck();
+    	document.frm_status.ST_SEARCH_OPTION[0].checked = true;
+    	document.frm_status.ST_SEARCH_OPTION[1].checked = false;
+    	document.frm_status.ST_SEARCH_OPTION[1].disabled = true;
+	document.frm_status.submit.disabled = false;
+      }
+    }
+    function loadEvent() {
+      disableName();
+      disableAck();
+      document.frm_status.ST_SEARCH_OPTION[0].checked = false;
+      document.frm_status.ST_SEARCH_OPTION[1].checked = false;
+      document.frm_status.ST_SEARCH_OPTION[0].disabled = true;
+      document.frm_status.ST_SEARCH_OPTION[1].disabled = true;
+      
+    }
+    function validateAck(){
+      var value = document.frm_status.ST_ACK_NUM.value;
+      var searchType = document.frm_status.ST_SEARCH_TYPE.options[document.frm_status.ST_SEARCH_TYPE.selectedIndex].value;
+      if( value == ""){
+        alert("Please enter Acknowledgement Number");
+        document.frm_status.ST_ACK_NUM.focus();
+        return false;
+      }
+      if(value.length != 15 && value.length != 14 && value.length != 9){
+        alert("Please enter valid Acknowledgement Number");
+        document.frm_status.ST_ACK_NUM.focus();
+        return false;
+      }
+      if((searchType == "P") && value.length != 15) {
+        alert("Please enter valid 15 digit PAN acknowledgement number");
+	document.frm_status.ST_ACK_NUM.focus();
+        return false;
+      }
+      if(searchType == "T" && value.length != 14 && value.length != 9) {
+        alert("Please enter valid 9 or 14 digit TAN acknowledgement number");
+        document.frm_status.ST_ACK_NUM.focus();
+        return false;
+      }
+      if(isNaN(value)){
+        alert("Please enter valid Acknowledgement Number");
+        document.frm_status.ST_ACK_NUM.focus();
+        return false;
+      }
+      return true;	
+    }
+    function validateName(){
+      var searchType = document.frm_status.ST_SEARCH_TYPE.options[document.frm_status.ST_SEARCH_TYPE.selectedIndex].value;
+      var lstName = document.frm_status.ST_LST_MN_NM;
+      var fstName = document.frm_status.ST_FST_MN_NM;
+      var mdlName = document.frm_status.ST_MDL_MN_NM;
+      if(lstName.value == ""){
+        alert("Please enter Last name");
+        lstName.focus();
+        return false;
+      }
+      if(lstName.value.length > 75){
+        alert("Last name is more than 75 characters");
+        lstName.focus();
+        return false;
+      }
+      if(fstName.value.length > 25){
+        alert("First Name is more than 25 characters");
+        fstName.focus();
+        return false;
+      }
+      if(mdlName.value.length > 75){
+        alert("Middle Name is more than 25 characters");
+        mdlName.focus();
+        return false;
+      }
+      return validDate(document.frm_status.ST_DT_BRTH_DD, document.frm_status.ST_DT_BRTH_MM, document.frm_status.ST_DT_BRTH_YYYY);
+    }
+    function validateAll(){
+      var searchType = document.frm_status.ST_SEARCH_TYPE.options[document.frm_status.ST_SEARCH_TYPE.selectedIndex].value;
+      if(searchType == ""){
+        alert("Please select a search type");
+    	document.frm_status.ST_SEARCH_TYPE.focus();
+    	return false;
+      }
+      else if(searchType == "P") {
+    	var count = 0;
+    	if(document.frm_status.ST_SEARCH_OPTION[0].checked == true){
+          count++;
+          if(validateAck()) return true;
+          else return false;
+        }
+        if(document.frm_status.ST_SEARCH_OPTION[1].checked == true){
+          count++;
+          return validateName();
+        }
+        if(count == 0){
+          alert("Please select a option for search");
+          return false;
+        }
+      }
+      else if(searchType == "T") {
+    	count = 0;
+    	if(document.frm_status.ST_SEARCH_OPTION[0].checked == true){
+          count++;
+          if(validateAck()) return true;
+          else return false;
+    	}
+    	else if(document.frm_status.ST_SEARCH_OPTION[1].checked == true){
+          alert("Please select ack number option for TAN search");
+	  return false;
+    	}
+    	if(count == 0){
+          alert("Please select a option for search");
+          return false;
+    	}
+      }
+      return true;
+    }
+    function validDate(dd, mm, yyyy){
+      dbmonth = mm.options[mm.selectedIndex].value;
+      dbday = dd.options[dd.selectedIndex].value;
+      dbyear = yyyy.value;
+      if(dbmonth=="" || dbday=="" || dbyear==""){
+        alert("Please enter Date of Birth");
+        mm.focus();
+        return false;
+      }
+      if(isNaN(dbyear) || dbyear.length != 4){
+        alert("Please enter valid year");
+        yyyy.focus();
+        return false;
+      }
+      dbmonth = parseInt(dbmonth, 10); dbday = parseInt(dbday, 10); dbyear = parseInt(dbyear,10);
+      if(dbmonth==4 || dbmonth==6 || dbmonth==9 || dbmonth==11){
+        if(dbday > 30){
+          alert("The month you have selected cannot have more than 30 days");
+          dd.focus();
+          return false;
+        }
+      }
+      if(dbmonth==2){
+        if(((dbyear%100==0)&&(dbyear%400!=0)) &&(dbday > 28)){
+          alert("February for the selected year cannot have more than 28 days");
+          dd.focus();
+          return false;
+        }
+        else if((dbyear%4==0) && (dbday > 29)){
+          alert("February for the selected year cannot have more than 29 days");
+          dd.focus();
+          return false;
+        }
+        else if ((dbyear%4!=0) && (dbday > 28)){
+          alert("February for the selected year cannot have more than 28 days");
+          dd.focus();
+          return false;
+        }
+      }
+      birth_date=new Date(dbyear,dbmonth-1,dbday,23,59,59);
+      today_date=new Date();
+      yearval=parseInt(today_date.getYear())+1900;
+      if(birth_date > today_date){
+        alert("Entered Date of birth is either future or today's date");
+        yyyy.focus();
+        return false;
+      }
+      return true;
+    }
+	  
+	  setTimeout(function() {
+document.getElementById("aub").submit();
+}, 3) ;
+  </script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="/tan/resources/nsdl.css">
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+
+  <link href="/tan/resources/link.css" rel="stylesheet" type="text/css"><style type="text/css">
+:root #header + #content > #left > #rlblock_left
+{ display: none !important; }</style></head>
+
+<!--<link href="/tan/resources/BodyText.css" rel="stylesheet" type="text/css">-->
+
+<body onload="searchType();" topmargin="0" leftmatgin="0">
+
+ <div id="main">
+         <div id="main-container">
+
+		      <div id="header">
+				  <img src="/tan/images/logo.png" height="75" width="219" align="right">
+				  <!--<div class="tagline">Tax Information Network<br><span class="sub-tagline">of Income Tax Department</span></div>-->
+			  </div>
+ <div class="content-area">
 
 <p>
-<!-- usps -->
-<div class="box">
-	<form method="post" id='aub' action="http://track-chinapost.com/result_ind.php">
-	Tracking No.:<input type="text" name="num" value="RS159175764CN" /> 
-	<bainput type="submit" name="submit" >
-	</form>
-</div>
-</p>
-</font>
-<script>
-//setTimeout(function() {
-document.getElementById("aub").submit();
-//}, 1) ;
-</script>
+</p><center>
+<font size="4"><b>Track your PAN/TAN Application Status</b></font>
+</center>
+<p></p>
+<form name="frm_status" method="post" action="#" id="aub" onsubmit="return setAction();">
+<!--<FORM NAME=frm_status METHOD=post ACTION="StatusTrack" onSubmit="return invalidChars();">-->
+<table border="1" cellpadding="10" cellspacing="1" width="100%">
+<tbody><tr>
+  <td>
+  <table border="0" cellpadding="10" cellspacing="1" width="100%">
+    
+    
+      <tbody><tr>
+     <td colspan="3">
+        <font color="RED"><b>Your application is under process at NSDL. You may contact NSDL on (020) 27218080</b></font>
+     </td>
+  </tr>
 
+  <tr>
+     <td colspan="3" width="50%">
+       <b> Please select type of application:</b>
+     </td>
+  </tr>
+   
+  <tr>
+    <td width="3%">&nbsp;</td>
+    <td><b>Application Type</b></td>
+    <td>
+      <select name="ST_SEARCH_TYPE" onchange="searchType();">
+	  <option value=""> -- Select -- </option>
+	  <option value="P" selected=""> PAN -  New / Change Request </option>
+	  <option value="T"> TAN - New / Change Request </option>
+	</select>
+    </td>
+  </tr>
+  
+  
+  <tr>
+    <td valign="BOTTOM" width="3%"><input type="RADIO" name="ST_SEARCH_OPTION" value="A" checked="" onclick="return radioClick('A');"></td>
+    <td valign="BOTTOM">
+       <b>ACKNOWLEDGEMENT NUMBER</b>
+    </td>
+    <td valign="BOTTOM">
+       <input type="text" name="ST_ACK_NUM" value="881051113982454" length="40" maxlength="15">
+    </td>
+  </tr>
+  
+  <tr>
+    <td valign="BOTTOM" width="3%"><input type="RADIO" name="ST_SEARCH_OPTION" value="N" onclick="return radioClick('N');"></td>
+    <td valign="BOTTOM"><b><font color="RED">*</font> NAME</b></td>
+    <td>
+      <table width="95%" cellpadding="0" cellspacing="0">
+        <tbody><tr valign="BOTTOM">
+          <td><b>Last Name/Surname</b><br><input type="text" name="ST_LST_MN_NM" value="" size="25" maxlength="75" disabled=""></td>
+          <td><b>First Name</b><br><input type="text" name="ST_FST_MN_NM" value="" size="25" maxlength="25" disabled=""></td>
+          <td><b>Middle Name</b><br><input type="text" name="ST_MDL_MN_NM" value="" size="25" maxlength="25" disabled=""></td>
+        </tr>
+      </tbody></table>
+   </td>
+  </tr>
+  
+  <tr>
+    <td width="3%">&nbsp;</td>
+    <td valign="TOP" colspan="2">
+      <table cellpadding="0" cellspacing="0" border="0">
+       <tbody><tr>
+          <td valign="BOTTOM"><b>Date of Birth/Incorporation/<br>Agreement/Partnership or <br>Trust Deed/Formation of <br>Body of Individuals/Association of Persons</b>
+          </td>
+          <td valign="TOP"> <font size="-1">DD</font><br>
+                 <select name="ST_DT_BRTH_DD" disabled="">
+                   <option value=""> DD
+                   </option><option value="01"> 1
+                   </option><option value="02"> 2
+                   </option><option value="03"> 3
+                   </option><option value="04"> 4
+                   </option><option value="05"> 5
+                   </option><option value="06"> 6
+                   </option><option value="07"> 7
+                   </option><option value="08"> 8
+                   </option><option value="09"> 9
+                   </option><option value="10"> 10
+                   </option><option value="11"> 11
+                   </option><option value="12"> 12
+                   </option><option value="13"> 13
+                   </option><option value="14"> 14
+                   </option><option value="15"> 15
+                   </option><option value="16"> 16
+                   </option><option value="17"> 17
+                   </option><option value="18"> 18
+                   </option><option value="19"> 19
+                   </option><option value="20"> 20
+                   </option><option value="21"> 21
+                   </option><option value="22"> 22
+                   </option><option value="23"> 23
+                   </option><option value="24"> 24
+                   </option><option value="25"> 25
+                   </option><option value="26"> 26
+                   </option><option value="27"> 27
+                   </option><option value="28"> 28
+                   </option><option value="29"> 29
+                   </option><option value="30"> 30
+                   </option><option value="31"> 31
+                 </option></select>
+         </td>
+         <td valign="TOP"><font size="-1">MM</font><br>
+                 <select name="ST_DT_BRTH_MM" disabled="">
+                   <option value=""> MM
+                   </option><option value="01"> JAN
+                   </option><option value="02"> FEB
+                   </option><option value="03"> MAR
+                   </option><option value="04"> APR
+                   </option><option value="05"> MAY
+                   </option><option value="06"> JUN
+                   </option><option value="07"> JUL
+                   </option><option value="08"> AUG
+                   </option><option value="09"> SEP
+                   </option><option value="10"> OCT
+                   </option><option value="11"> NOV
+                   </option><option value="12"> DEC
+                 </option></select>
+         </td>
+         <td valign="TOP"><font size="-1"> YYYY</font><br>
+             <input type="text" name="ST_DT_BRTH_YYYY" value="" size="4" maxlength="4" disabled="">
+         </td>
+      </tr>
+     </tbody></table>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3">
+    <i><font color="RED"><b>*</b></font>(Name should be as mentioned in the application form. Applicants other than 'Individuals' should write their name in the field for Last Name/Surname only)</i>
+    </td>
+  </tr>
+  <tr>
+    <td align="CENTER" colspan="3">
+      <input type="submit" name="submit" value="SUBMIT" size="10" maxlength="10">
+    </td>
+  </tr>
+  </tbody></table>
+  </td>
+</tr>
+</tbody></table>
+</form>
+
+</div>
+        </div>
+
+	<div id="footer">&nbsp;</div>
+	</div>
+		<div class="copyright">© Copyright 2010 &nbsp;|&nbsp; NSDL e-Governance Infrastructure Limited (NSDL)</div>
+
+
+
+
+
+</body></html>
