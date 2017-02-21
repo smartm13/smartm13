@@ -4,7 +4,7 @@
 <p>Distance=<span id="dist">Not calculated</span></p>
 <!--div id="dvMapx" xstyle="width: 500px; height: 500px">
 </div-->
-<img id="a2b" src="" alt="not yet">
+<img id="a2b" src="" alt="not yet" style="visibility:hidden">
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCukgTXgyKU6AhORZnj4tagO3DNOwgB8Kg"></script>
 <!-- get ur key @ https://developers.google.com/maps/documentation/javascript/directions -->
 <body onload="init()">
@@ -88,13 +88,18 @@ directionsService.route(request, function(response, status) {
 	console.log(response);
 	console.log(status);
     document.getElementById("dist").innerHTML=( response.routes[0].legs[0].distance.text +" ("+response.routes[0].legs[0].distance.value +" meters)"); // the distance in metres
-	secs=document.getElementById("enLoctime").innerHTML-document.getElementById("stLoctime").innerHTML;
-	document.getElementById("dist").innerHTML+="<br>Time Taken= "+secs+"seconds";
+	secs=(document.getElementById("enLoctime").innerHTML-document.getElementById("stLoctime").innerHTML)/1000;
+	var date = new Date(1970,0,1);
+    date.setSeconds(secs);
+    Tsecs= date.toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1");
+	document.getElementById("dist").innerHTML+="<br>Time Taken= "+Tsecs+" [hh:mm:ss]";
+	document.getElementById("dist").innerHTML+="<br>Excepted time= "+response.routes[0].legs[0].duration.text;
 	speed=(response.routes[0].legs[0].distance.value/(5*secs/18)).toFixed(2);
 	document.getElementById("dist").innerHTML+="<br>Estimated Speed="+speed+" kmph.";
-	if (speed<5)document.getElementById("dist").innerHTML+=" Too Slow. :(";
+	if (speed<5)document.getElementById("dist").innerHTML+=" Too Slow. x(";
 	//static map show
 	document.getElementById("a2b").src="https://maps.googleapis.com/maps/api/staticmap?size=500x500&key=AIzaSyD205DXBtttTWi2NIAM8pAWwMH98g8awvo&path=enc%3A"+response.routes[0].overview_polyline;
+	document.getElementById("a2b").style="";
 	/*
 	//map showing
 	directionsDisplay = new google.maps.DirectionsRenderer({ 'draggable': false });
