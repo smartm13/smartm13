@@ -35,8 +35,8 @@ function geoFindMe(elem) {
     output.innerHTML+= 'Latitude is <span id="'+elem+'Clt">' + latitude + '</span>° <br>Longitude is <span id="'+elem+'Clg">' + longitude + '</span>°<br>';
 	output.innerHTML+="<a href='http://maps.google.com?q="+latitude+","+longitude+"'>Show on gMAPS</a><br>";
     var img = new Image();
-    img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=15&size=200x200&sensor=false";
-
+    img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=15&size=200x200&sensor=false&key=AIzaSyD205DXBtttTWi2NIAM8pAWwMH98g8awvo";
+	img.alt="^see on maps."
     output.appendChild(img);
   }
 
