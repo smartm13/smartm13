@@ -92,7 +92,7 @@ directionsService.route(request, function(response, status) {
 	document.getElementById("dist").innerHTML+="<br>Time Taken= "+secs+"seconds";
 	document.getElementById("dist").innerHTML+="<br>Estimated Speed="+(response.routes[0].legs[0].distance.value/secs).toFixed(2);
 	//static map show
-	document.getElementById("a2b").src="https://maps.googleapis.com/maps/api/staticmap?size=500x500&path=enc%3A"+response.routes[0].overview_polyline;
+	document.getElementById("a2b").src="https://maps.googleapis.com/maps/api/staticmap?size=500x500&key=AIzaSyD205DXBtttTWi2NIAM8pAWwMH98g8awvo&path=enc%3A"+response.routes[0].overview_polyline;
 	/*
 	//map showing
 	directionsDisplay = new google.maps.DirectionsRenderer({ 'draggable': false });
