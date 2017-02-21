@@ -3,9 +3,9 @@
 Distance Calc</title>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCukgTXgyKU6AhORZnj4tagO3DNOwgB8Kg"></script>
 <body onload="init()">
+<p>Distance=<span id="dist">Not calculated</span></p>
 <button onclick="geoFindMe('stLoc');">Start</button> <span id="stLoc">Not detected</span><br><br>
 <button onclick="geoFindMe('enLoc');asResult()">Stop</button> <span id="enLoc">Not detected</span>
-<p>Distance=<span id="dist">Not calculated</span></p>
 </body>
 <script>
 function geoFindMe(elem) {
