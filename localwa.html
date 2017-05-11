@@ -66,6 +66,18 @@ function httpGet(theUrl, callback)
 }
 
 httpGet("http://192.168.1.3:8080/?now="+(new Date()).toLocaleTimeString(),console.log)
+
+function httpGet(theUrl,textdata,callback)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("POST", theUrl, true); // true for asynchronous 
+    xmlHttp.send(textdata);
+}
+
 </script>
 <img src="http://192.168.1.3:8080/?getnowimg="+(new Date()).toLocaleTimeString()>
 <iframe src="http://192.168.1.3:8080/?getnowifr="+(new Date()).toLocaleTimeString()>
