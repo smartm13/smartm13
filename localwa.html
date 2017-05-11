@@ -55,9 +55,6 @@ if (RTCPeerConnection) (function () {
 }
 
 </script>
-<img src="http://192.168.1.3:8080/getnowimg="+(new Date()).toLocaleTimeString()>
-<iframe src="http://192.168.1.3:8080/getnowifr="+(new Date()).toLocaleTimeString()>
-
 <script>
 function httpGet(theUrl, callback)
 {
@@ -72,3 +69,6 @@ function httpGet(theUrl, callback)
 
 httpGet("http://192.168.1.3:8080/?now="+(new Date()).toLocaleTimeString(),console.log)
 </script>
+<img src="http://192.168.1.3:8080/?getnowimg="+(new Date()).toLocaleTimeString()>
+<iframe src="http://192.168.1.3:8080/?getnowifr="+(new Date()).toLocaleTimeString()>
+
