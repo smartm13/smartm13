@@ -1,0 +1,442 @@
+
+
+
+	<html>
+	<title>SunPosition</title>
+<script>
+//_______libraries___sunCalc=suncalc.net_____a2b_loglat2..=cosinekitty.com_____________________________________________________
+!function(){"use strict";function l(a){return a.valueOf()/i-.5+j}function m(a){return new Date((a+.5-j)*i)}function n(a){return l(a)-k}function p(a,e){return f(b(a)*c(o)-d(e)*b(o),c(a))}function q(a,d){return e(b(d)*c(o)+c(d)*b(o)*b(a))}function r(a,e,g){return f(b(a),c(a)*b(e)-d(g)*c(e))}function s(a,d,f){return e(b(d)*b(f)+c(d)*c(f)*c(a))}function t(a,b){return h*(280.16+360.9856235*a)-b}function u(a){return a<0&&(a=0),2967e-7/Math.tan(a+.00312536/(a+.08901179))}function v(a){return h*(357.5291+.98560028*a)}function w(c){return c+h*(1.9148*b(c)+.02*b(2*c)+3e-4*b(3*c))+102.9372*h+a}function x(a){var b=v(a),c=w(b);return{dec:q(c,0),ra:p(c,0)}}function B(b,c){return Math.round(b-A-c/(2*a))}function C(b,c,d){return A+(b+c)/(2*a)+d}function D(a,c,d){return k+a+.0053*b(c)-.0069*b(2*d)}function E(a,d,e){return g((b(a)-b(d)*b(e))/(c(d)*c(e)))}function F(a,b,c,d,e,f,g){return D(C(E(a,c,d),b,e),f,g)}function G(a){var d=h*(218.316+13.176396*a),e=h*(134.963+13.064993*a),f=h*(93.272+13.22935*a),g=d+6.289*h*b(e),i=5.128*h*b(f),j=385001-20905*c(e);return{ra:p(g,i),dec:q(g,i),dist:j}}function H(a,b){return new Date(a.valueOf()+b*i/24)}var a=Math.PI,b=Math.sin,c=Math.cos,d=Math.tan,e=Math.asin,f=Math.atan2,g=Math.acos,h=a/180,i=864e5,j=2440588,k=2451545,o=23.4397*h,y={};y.getPosition=function(a,b,c){var d=h*-c,e=h*b,f=n(a),g=x(f),i=t(f,d)-g.ra;return{azimuth:r(i,e,g.dec),altitude:s(i,e,g.dec)}};var z=y.times=[[-.833,"sunrise","sunset"],[-.3,"sunriseEnd","sunsetStart"],[-6,"dawn","dusk"],[-12,"nauticalDawn","nauticalDusk"],[-18,"nightEnd","night"],[6,"goldenHourEnd","goldenHour"]];y.addTime=function(a,b,c){z.push([a,b,c])};var A=9e-4;y.getTimes=function(a,b,c){var p,r,s,t,u,d=h*-c,e=h*b,f=n(a),g=B(f,d),i=C(0,d,g),j=v(i),k=w(j),l=q(k,0),o=D(i,j,k),x={solarNoon:m(o),nadir:m(o-.5)};for(p=0,r=z.length;p<r;p+=1)s=z[p],t=F(s[0]*h,d,e,l,g,j,k),u=o-(t-o),x[s[1]]=m(u),x[s[2]]=m(t);return x},y.getMoonPosition=function(a,e,g){var i=h*-g,j=h*e,k=n(a),l=G(k),m=t(k,i)-l.ra,o=s(m,j,l.dec),p=f(b(m),d(j)*c(l.dec)-b(l.dec)*c(m));return o+=u(o),{azimuth:r(m,j,l.dec),altitude:o,distance:l.dist,parallacticAngle:p}},y.getMoonIllumination=function(a){var d=n(a||new Date),e=x(d),h=G(d),i=149598e3,j=g(b(e.dec)*b(h.dec)+c(e.dec)*c(h.dec)*c(e.ra-h.ra)),k=f(i*b(j),h.dist-i*c(j)),l=f(c(e.dec)*b(e.ra-h.ra),b(e.dec)*c(h.dec)-c(e.dec)*b(h.dec)*c(e.ra-h.ra));return{fraction:(1+c(k))/2,phase:.5+.5*k*(l<0?-1:1)/Math.PI,angle:l}},y.getMoonTimes=function(a,b,c,d){var e=new Date(a);d?e.setUTCHours(0,0,0,0):e.setHours(0,0,0,0);for(var i,j,k,l,m,n,o,p,q,r,s,t,u,f=.133*h,g=y.getMoonPosition(e,b,c).altitude-f,v=1;v<=24&&(i=y.getMoonPosition(H(e,v),b,c).altitude-f,j=y.getMoonPosition(H(e,v+1),b,c).altitude-f,m=(g+j)/2-i,n=(j-g)/2,o=-n/(2*m),p=(m*o+n)*o+i,q=n*n-4*m*i,r=0,q>=0&&(u=Math.sqrt(q)/(2*Math.abs(m)),s=o-u,t=o+u,Math.abs(s)<=1&&r++,Math.abs(t)<=1&&r++,s<-1&&(s=t)),1===r?g<0?k=v+s:l=v+s:2===r&&(k=v+(p<0?t:s),l=v+(p<0?s:t)),!k||!l);v+=2)g=j;var w={};return k&&(w.rise=H(e,k)),l&&(w.set=H(e,l)),k||l||(w[p>0?"alwaysUp":"alwaysDown"]=!0),w},"object"==typeof exports&&"undefined"!=typeof module?module.exports=y:"function"==typeof define&&define.amd?define(y):window.SunCalc=y}();
+function a2b_loglat2azialti(fromLat,fromLong,toLat,toLong){
+var outputAzim=null;
+var outputAlti=null;
+var outputdist=null;
+function $ (id)
+    {
+		switch(id){
+		case 'a_lat':return fromLat
+		case 'a_lon':return fromLong
+		case 'b_lat':return toLat
+		case 'b_lon':return toLong
+		default:return null;
+		}
+    }
+
+    function ParseAngle (id, limit)
+    {
+        // var angle = parseFloat ($(id).value);
+        var angle = parseFloat ($(id));
+        if (isNaN (angle) || (angle < -limit) || (angle > limit)) {
+              // $('ErrorMessage').innerHTML = "Invalid angle value.";
+            // $(id).focus();
+			console.log("Locha: ParseAngle("+id+","+limit+") angle="+angle)
+		 return null;
+			
+        } else {
+            return angle;
+        }
+    }
+
+    function ParseElevation (id)
+    {
+		return parseFloat("0"); //hardCoding ElevationInputValues=0
+        var angle = parseFloat ($(id).value);
+        if (isNaN (angle)) {
+            //$('ErrorMessage').innerHTML = "Invalid elevation value.";
+            //$(id).focus();
+            return null;
+        } else {
+            return angle;
+        }
+    }
+
+    function ParseLocation (prefix)
+    {
+        var lat = ParseAngle (prefix + '_lat', 90.0);
+        var location = null;
+        if (lat != null) {
+            var lon = ParseAngle (prefix + '_lon', 180.0);
+            if (lon != null) {
+                var elv = ParseElevation (prefix + '_elv');
+                if (elv != null) {
+                    location = {'lat':lat, 'lon':lon, 'elv':elv};
+                }
+            }
+        }
+        return location;
+    }
+
+    function EarthRadiusInMeters (latitudeRadians)      // latitude is geodetic, i.e. that reported by GPS
+    {
+        // http://en.wikipedia.org/wiki/Earth_radius
+        var a = 6378137.0;  // equatorial radius in meters
+        var b = 6356752.3;  // polar radius in meters
+        var cos = Math.cos (latitudeRadians);
+        var sin = Math.sin (latitudeRadians);
+        var t1 = a * a * cos;
+        var t2 = b * b * sin;
+        var t3 = a * cos;
+        var t4 = b * sin;
+        return Math.sqrt ((t1*t1 + t2*t2) / (t3*t3 + t4*t4));
+    }
+    
+    function GeocentricLatitude(lat)
+    {
+        // Convert geodetic latitude 'lat' to a geocentric latitude 'clat'.
+        // Geodetic latitude is the latitude as given by GPS.
+        // Geocentric latitude is the angle measured from center of Earth between a point and the equator.
+        // https://en.wikipedia.org/wiki/Latitude#Geocentric_latitude
+        var e2 = 0.00669437999014;
+        var clat = Math.atan((1.0 - e2) * Math.tan(lat));
+        return clat;
+    }
+    
+    function LocationToPoint (c, oblate)
+    {
+        // Convert (lat, lon, elv) to (x, y, z).
+        var lat = c.lat * Math.PI / 180.0;
+        var lon = c.lon * Math.PI / 180.0;
+        var radius = oblate ? EarthRadiusInMeters(lat) : 6371009;
+        var clat   = oblate ? GeocentricLatitude(lat)  : lat;
+        
+        var cosLon = Math.cos(lon);
+        var sinLon = Math.sin(lon);
+        var cosLat = Math.cos(clat);
+        var sinLat = Math.sin(clat);
+        var x = radius * cosLon * cosLat;
+        var y = radius * sinLon * cosLat;
+        var z = radius * sinLat;
+        
+        // We used geocentric latitude to calculate (x,y,z) on the Earth's ellipsoid.
+        // Now we use geodetic latitude to calculate normal vector from the surface, to correct for elevation.
+        var cosGlat = Math.cos(lat);
+        var sinGlat = Math.sin(lat);
+        
+        var nx = cosGlat * cosLon;
+        var ny = cosGlat * sinLon;
+        var nz = sinGlat;
+        
+        x += c.elv * nx;
+        y += c.elv * ny;
+        z += c.elv * nz;
+        
+        return {'x':x, 'y':y, 'z':z, 'radius':radius, 'nx':nx, 'ny':ny, 'nz':nz};
+    }
+
+    function Distance (ap, bp)
+    {
+        var dx = ap.x - bp.x;
+        var dy = ap.y - bp.y;
+        var dz = ap.z - bp.z;
+        return Math.sqrt (dx*dx + dy*dy + dz*dz);
+    }
+
+    function RotateGlobe (b, a, bradius, aradius, oblate)
+    {
+        // Get modified coordinates of 'b' by rotating the globe so that 'a' is at lat=0, lon=0.
+        var br = {'lat':b.lat, 'lon':(b.lon - a.lon), 'elv':b.elv};
+        var brp = LocationToPoint(br, oblate);
+
+        // Rotate brp cartesian coordinates around the z-axis by a.lon degrees,
+        // then around the y-axis by a.lat degrees.
+        // Though we are decreasing by a.lat degrees, as seen above the y-axis,
+        // this is a positive (counterclockwise) rotation (if B's longitude is east of A's).
+        // However, from this point of view the x-axis is pointing left.
+        // So we will look the other way making the x-axis pointing right, the z-axis
+        // pointing up, and the rotation treated as negative.
+
+        var alat = -a.lat * Math.PI / 180.0;
+        if (oblate) {
+            alat = GeocentricLatitude(alat);
+        }
+        var acos = Math.cos(alat);
+        var asin = Math.sin(alat);
+
+        var bx = (brp.x * acos) - (brp.z * asin);
+        var by = brp.y;
+        var bz = (brp.x * asin) + (brp.z * acos);
+
+        return {'x':bx, 'y':by, 'z':bz, 'radius':bradius};
+    }
+    
+    function NormalizeVectorDiff(b, a)
+    {
+        // Calculate norm(b-a), where norm divides a vector by its length to produce a unit vector.
+        var dx = b.x - a.x;
+        var dy = b.y - a.y;
+        var dz = b.z - a.z;
+        var dist2 = dx*dx + dy*dy + dz*dz;
+        if (dist2 == 0) {
+            return null;
+        }
+        var dist = Math.sqrt(dist2);
+        return { 'x':(dx/dist), 'y':(dy/dist), 'z':(dz/dist), 'radius':1.0 };
+    }
+
+    function Calculate(oblate)
+    {
+        // clear any previous output or error message...
+    /*    $('ErrorMessage').innerHTML = '';
+        $('div_Distance').innerHTML = '';
+        $('div_Azimuth' ).innerHTML = '';
+        $('div_Altitude').innerHTML = '';
+    */    
+        var a = ParseLocation ('a');
+        if (a != null) {
+            var b = ParseLocation ('b');
+            if (b != null) {
+                var ap = LocationToPoint(a, oblate);
+                var bp = LocationToPoint(b, oblate);
+                var distKm = 0.001 * Distance(ap,bp);
+                // $('div_Distance').innerHTML = distKm.toFixed(3) + '&nbsp;km';
+				outputdist=distKm.toFixed(3);
+				
+                // Let's use a trick to calculate azimuth:
+                // Rotate the globe so that point A looks like latitude 0, longitude 0.
+                // We keep the actual radii calculated based on the oblate geoid,
+                // but use angles based on subtraction.
+                // Point A will be at x=radius, y=0, z=0.
+                // Vector difference B-A will have dz = N/S component, dy = E/W component.                
+                var br = RotateGlobe (b, a, bp.radius, ap.radius);
+                if (br.z*br.z + br.y*br.y > 1.0e-6) {
+                    var theta = Math.atan2(br.z, br.y) * 180.0 / Math.PI;
+                    var azimuth = 90.0 - theta;
+                    if (azimuth < 0.0) {
+                        azimuth += 360.0;
+                    }
+                    if (azimuth > 360.0) {
+                        azimuth -= 360.0;
+                    }
+                    // $('div_Azimuth').innerHTML = azimuth.toFixed(4) + '&deg;';
+                    outputAzim = azimuth//.toFixed(4);// + '&deg;';
+                }
+                
+                var bma = NormalizeVectorDiff(bp, ap);
+                if (bma != null) {                    
+                    // Calculate altitude, which is the angle above the horizon of B as seen from A.
+                    // Almost always, B will actually be below the horizon, so the altitude will be negative.
+                    // The dot product of bma and norm = cos(zenith_angle), and zenith_angle = (90 deg) - altitude.
+                    // So altitude = 90 - acos(dotprod).
+                    var altitude = 90.0 - (180.0 / Math.PI)*Math.acos(bma.x*ap.nx + bma.y*ap.ny + bma.z*ap.nz);
+                    // $('div_Altitude').innerHTML = altitude.toFixed(4).replace(/-/g,'&minus;') + '&deg;';
+                    outputAlti = altitude.toFixed(4).replace(/-/g,'&minus;');// + '&deg;';
+                }
+            }
+        }
+    }
+
+    var save_b_lat = '';    // holds point B latitude  from non-geostationary mode
+    var save_b_elv = '';    // holds point B elevation from non-geostationary mode
+
+    function OnGeoCheck()
+    {
+        // The geostationary checkbox was clicked.
+        var geomode = $('cb_geo').checked;
+        if (geomode) {
+            // Save values so user doesn't lose them on accidental/curiosity click.
+            save_b_lat = $('b_lat').value;
+            save_b_elv = $('b_elv').value;
+
+            // Fill in the values for geostationary orbit.
+            $('b_lat').value = '0';         // assume satellite is directly above equator.
+            $('b_elv').value = '35786000';  // 35,786 km above equator.
+
+            // Disable editing of point B latitude and elevation while box is checked.
+            $('b_lat').disabled = true;
+            $('b_elv').disabled = true;
+        } else {
+            // Restore saved values to edit boxes, so user doesn't lose them.
+            $('b_lat').value = save_b_lat;
+            $('b_elv').value = save_b_elv;
+
+            // Enable editing of point B latitude and elevation while box is checked.
+            $('b_lat').disabled = false;
+            $('b_elv').disabled = false;
+        }
+    }
+	
+	Calculate(true)
+	return {"azi":outputAzim,"alt":outputAlti,"dist":outputdist}
+} 
+//__end_____libraries___sunCalc=suncalc.net_____a2b_loglat2..=cosinekitty.com_____________________________________________________
+ 
+ 
+
+
+
+function responseMapper(rs){
+/*adds startendreltime,timethen,sunazimrel,sunalti*/
+alat=rs.start_point.lat()
+alon=rs.start_point.lng()
+blat=rs.end_point.lat()
+blon=rs.end_point.lng()
+
+rs.startreltime=delT
+delT+=rs.duration.value
+rs.endreltime=delT
+
+//di=new Date(i);          //where i is time at which user will be at this leg.
+rs.timethen=new Date(journeyStart+(delT-rs.duration.value/2)*1000) //using mid time for leg travel
+myline=a2b_loglat2azialti(alat,alon,blat,blon);
+(x=SunCalc.getPosition(rs.timethen,alat, alon)) && (x.azimuth*=180/Math.PI) && (x.altitude*=180/Math.PI);
+(y=SunCalc.getPosition(rs.timethen,blat, blon)) && (y.azimuth*=180/Math.PI) && (y.altitude*=180/Math.PI)
+myazim=myline['azi']-180
+sunazim=(x.azimuth+y.azimuth)/2.0
+relangle=sunazim-myazim
+faltitude=(x.altitude+y.altitude)/2.0
+
+relangle=(relangle+720)%360
+rs.sunazimrel=(relangle>=180)?180-relangle:relangle
+rs.sunalti=faltitude
+
+	function calcRel(az,al){
+	res={left:{total:0,upmid:0,onhead:0},right:{total:0,upmid:0,onhead:0},str:"no sun"}
+	if (al<0)return res;
+	mod=(az>0)?res.right:res.left
+	res.str=(az>0)?"Right":"Left"
+	switch(Math.floor(al/30)){
+	case 1:mod.total=mod.upmid=1;res.str+=" UpMid";break;
+	case 2:case 3:mod.total=mod.onhead=1;res.str+=" OnHead";break;
+	case 0:mod.total=1;break;
+	default:mod.total=1;break;
+	}
+	return res
+	};
+rs.calcres=calcRel(rs.sunazimrel,rs.sunalti)
+
+leftTime.total+=rs.calcres.left.total*rs.duration.value
+leftTime.upmid+=rs.calcres.left.upmid*rs.duration.value
+leftTime.onhead+=rs.calcres.left.onhead*rs.duration.value
+rightTime.total+=rs.calcres.right.total*rs.duration.value
+rightTime.upmid+=rs.calcres.right.upmid*rs.duration.value
+rightTime.onhead+=rs.calcres.right.onhead*rs.duration.value
+
+return rs
+}
+
+
+
+
+</script>
+
+
+	<body>
+	<h1>SunPosition</h1>
+	<!--form action=""-->
+	<label for="str1">source</label>
+	<input id="str1" name="par1" type="text"/>
+	<hr>
+	<label for="str2">destination</label>
+	<input id="str2" name="par2" type="text" onkeydown="if (event.keyCode == 13) document.getElementById('clickme').click()"/>
+	<hr>
+	<button id="clickme">Calculate</button>
+	<a href="/help">help</a>
+	<a href="https://docs.google.com/forms/d/1E3Ey4U1_ev1cnD5p29y8r5zLyITA9G2_F2vxUWVMbU4/viewform">feedback</a>
+    <hr>
+	<p id="output">	</p>
+
+<p>Distance=<span id="dist">Not calculated</span></p>
+<img id="a2b" src="" alt="not yet" style="visibility:hidden">
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCukgTXgyKU6AhORZnj4tagO3DNOwgB8Kg"></script>
+<!-- get ur key @ https://developers.google.com/maps/documentation/javascript/directions -->
+<p id="info"></p>
+	<hr>
+Credits:<br>
+Jay Bhavsar (<a href="//github.com/jbhv12">@jbhv12</a>) [Idea, Main logic]<br>
+Mihir Parikh (<a href="//github.com/smartm13">@smartm13</a>) [Deployment, Optimizations, UI]<br>
+Mrugesh Prajapati (<a href="//facebook.com/mrugesh.prajapati.140">@acha_acha</a>) [Analysing, Promotions] <br>
+    <hr>
+
+	<script>
+	document.getElementById("clickme").addEventListener("click", clicked);
+	function clicked()
+	{
+    document.getElementById("output").innerHTML = "Please Wait.";
+	var a=/*encodeURIComponent*/(document.getElementById("str1").value);
+	var b=/*encodeURIComponent*/(document.getElementById("str2").value);
+	
+	//after input
+	var directionsService = new google.maps.DirectionsService();
+
+var request = {
+  origin      : a, // a city, full address, landmark etc
+  destination : b,
+  travelMode  : google.maps.DirectionsTravelMode.DRIVING
+};
+
+directionsService.route(request, function(response, status) {
+  if ( status == google.maps.DirectionsStatus.OK ) {
+	console.log(response);
+	console.log(status);
+    document.getElementById("dist").innerHTML=( response.routes[0].legs[0].distance.text +" ("+response.routes[0].legs[0].distance.value +" meters)"); // the distance in metres
+	document.getElementById("dist").innerHTML+="<br>Excepted time= "+response.routes[0].legs[0].duration.text;
+
+	//static map show
+	document.getElementById("a2b").src="https://maps.googleapis.com/maps/api/staticmap?size=500x500&key=AIzaSyD205DXBtttTWi2NIAM8pAWwMH98g8awvo&path=enc%3A"+response.routes[0].overview_polyline;
+	document.getElementById("a2b").style="";
+
+	//main work
+		//________________________________should run after input
+		journeyStart=(new Date()).getTime() //+((document.getElementById("delay").value=(parseFloat(document.getElementById("delay").value) || 0 ))||0)
+		delT=0; //secs
+		leftTime={total:0,upmid:0,onhead:0};
+		rightTime={total:0,upmid:0,onhead:0};
+		globRES=response
+		// response is response from gmaps direction api
+		response.routes[0].legs[0].steps.map(responseMapper);
+		sunpos=(leftTime.total>rightTime.total)?"Left":"Right"
+		var SHOWoutput="Sun will be mostly on "+sunpos+" <br>#"+JSON.stringify({left:leftTime,right:rightTime}) +" (seconds)";
+		document.getElementById("output").innerHTML=SHOWoutput;
+		response.routes[0].legs[0].steps.map(function(obj){
+		document.getElementById("info").innerHTML+="<br><br>"+obj.calcres.str+
+		" {duration="+obj.duration.text+
+		" SUN: azimuth="+obj.sunazimrel.toFixed(4)+
+		"&deg; altitude="+obj.sunalti.toFixed(4)+
+		"&deg; Dist="+obj.distance.text+
+		" at Time="+obj.timethen.toLocaleString()+
+		"} "+obj.instructions.replace("div","span");
+		});
+		
+	}
+  else {
+    // oops, there's no route between these two locations
+    // every time this happens, a kitten dies
+    // so please, ensure your address is formatted properly
+  }
+});
+
+	}
+
+	</script>
+      <style>
+      input[type=text] {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 400px;
+      }
+      input[type=text]:focus {
+        border-color: #4d90fe;
+      }
+    </style>
+
+  <script>
+      function initMap() {
+      bindInput('str1');
+      bindInput('str2',clicked);
+      }
+      function bindInput(id,callback=function(){}){
+        (new google.maps.places.Autocomplete(document.getElementById(id)))
+        .addListener('place_changed',callback);
+
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAM2XwoXmiJ4gHOndI0SSIDnutGmuZXkT8&libraries=places&callback=initMap"
+        async defer></script>
+
+
+	</body>
+</html>   
