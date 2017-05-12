@@ -384,7 +384,7 @@ directionsService.route(request, function(response, status) {
 		// response is response from gmaps direction api
 		response.routes[0].legs[0].steps.map(responseMapper);
 		sunpos=(leftTime.total>rightTime.total)?"Left":"Right"
-		var SHOWoutput="Sun will be mostly on "+sunpos+" <br>#"+JSON.stringify({left:leftTime,right:rightTime}) +" (seconds)";
+		var SHOWoutput="Sun will be mostly on your <h3>"+sunpos+"</h3><br>#"+JSON.stringify({left:leftTime,right:rightTime}) +" (seconds)";
 		document.getElementById("output").innerHTML=SHOWoutput;
 		response.routes[0].legs[0].steps.map(function(obj){
 		document.getElementById("info").innerHTML+="<br><br>"+obj.calcres.str+
