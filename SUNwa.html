@@ -386,7 +386,7 @@ directionsService.route(request, function(response, status) {
 		sunpos=(leftTime.total>rightTime.total)?"Left":"Right"
 		var SHOWoutput="Sun will be mostly on your <h3>"+sunpos+"</h3><br>#"+JSON.stringify({left:leftTime,right:rightTime}) +" (seconds)";
 		document.getElementById("output").innerHTML=SHOWoutput;
-		document.getElementById("info").innerHTML="Building extra details...";
+		document.getElementById("info").innerHTML="Step by Step SUN details...";
 	  	response.routes[0].legs[0].steps.map(function(obj){
 		document.getElementById("info").innerHTML+="<br><br>"+obj.calcres.str+
 		" {duration="+obj.duration.text+
