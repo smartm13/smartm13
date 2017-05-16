@@ -350,6 +350,10 @@ Mrugesh Prajapati (<a href="//facebook.com/mrugesh.prajapati.140">@acha_acha</a>
 
 	<script>
     document.getElementById("myloc").addEventListener("click", function(){
+    if (location.protocol !== "https:") 
+    if (prompt("Location requires you to use https secure protocol. Proceed?"))
+    location.protocol = "https:";
+    
     thiswa=this
   var output = document.getElementById("str1");
 this.innerHTML="Locating...";
