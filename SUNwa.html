@@ -324,10 +324,12 @@ return rs
 	<!--form action=""-->
 	<label for="str1">source</label>
 	<input id="str1" name="par1" type="text"/>
-	<hr>
+    <button id="myloc">Use my current location</button>
+	<p>
 	<label for="str2">destination</label>
 	<input id="str2" name="par2" type="text" onkeydown="if (event.keyCode == 13) document.getElementById('clickme').click()"/>
-	<hr>
+    <button id="swaploc">Swap</button>
+	<p>
 	<button id="clickme">Calculate</button>
 	<a href="/help">help</a>
 	<a href="https://docs.google.com/forms/d/1E3Ey4U1_ev1cnD5p29y8r5zLyITA9G2_F2vxUWVMbU4/viewform">feedback</a>
@@ -347,13 +349,46 @@ Mrugesh Prajapati (<a href="//facebook.com/mrugesh.prajapati.140">@acha_acha</a>
     <hr>
 
 	<script>
+    document.getElementById("myloc").addEventListener("click", function(){
+    thiswa=this
+  var output = document.getElementById("str1");
+this.innerHTML="Locating...";
+output.value="";
+  if (!navigator.geolocation){
+    output.placeholder = "Geolocation is not supported by your browser";
+    thiswa.innerHTML="Failed."
+    return;
+  }
+
+  function success(position) {
+    var latitude  = position.coords.latitude;
+    var longitude = position.coords.longitude;
+	output.value=latitude+","+longitude;
+	thiswa.innerHTML="Located."
+}
+
+  function error() {
+    output.placeholder = "Unable to retrieve your location";
+    thiswa.innerHTML="Failed."
+  }
+
+
+  navigator.geolocation.getCurrentPosition(success, error);
+
+    });
+    document.getElementById("swaploc").addEventListener("click",function(){temp=document.getElementById("str1").value;
+    document.getElementById("str1").value=document.getElementById("str2").value;
+    document.getElementById("str2").value=temp;
+    });
+	
 	document.getElementById("clickme").addEventListener("click", clicked);
 	function clicked()
 	{
     document.getElementById("output").innerHTML = "Please Wait.";
 	var a=/*encodeURIComponent*/(document.getElementById("str1").value);
 	var b=/*encodeURIComponent*/(document.getElementById("str2").value);
-	
+	if (!a || !b)     document.getElementById("output").innerHTML = "Incomplete input.";
+
 	//after input
 	var directionsService = new google.maps.DirectionsService();
 
