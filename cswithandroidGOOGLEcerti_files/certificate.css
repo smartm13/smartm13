@@ -1,0 +1,47 @@
+@media print {
+  .printbutton {
+    visibility: hidden;
+    display: none;
+  }
+}
+#container {
+  text-align: center;
+  width: 960px;
+  height : 725px;
+  margin: 0px auto;
+}
+p {
+  font-family: open sans,arial,sans-serif;
+  margin: 0px;
+  font-size: 25px;
+  color: #73726b;
+  text-align: left;
+}
+#cert-top {
+  height: 300px;
+  position: relative;
+}
+#cert-top-content {
+  position: absolute;
+  bottom: 0px;
+  width: 700px;
+}
+#certificate-title {
+  font-size: 50px;
+  margin-bottom: 10px;
+  color: #4ba241;
+}
+#cert-bottom {
+  height: 160px;
+  margin: 25px 0px;
+}
+#student-name {
+  font-size: 40px;
+  text-align: center;
+  margin-left: 300px;
+  border-bottom: 1px solid #eee;
+}
+#print-button-div {
+  text-align: center;
+  margin: 0px 30px;
+}
