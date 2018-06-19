@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
 <script>
+  if (location.protocol !== "https:") location.protocol = "https:";
+function play(){
+document.getElementsByTagName('audio')[0].play();
+} 
 function start(){
-document.getElementsByTagName('audio')[0].play()
+setTimeout(play,10);
 }
-</script>
+  </script>
 <body onload="start()">
 
 <audio controls>
