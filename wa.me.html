@@ -1,0 +1,10 @@
+<input id="number" value="91">
+<button onclick="sub()">Open WA</button>
+<script>
+function sub(){
+num=document.getElementById("number").value;
+digs=num.match(/\d/g).join("");
+url="https://wa.me/"+digs;
+window.location = url;
+}
+</script>
