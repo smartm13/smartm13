@@ -6,5 +6,13 @@ num=document.getElementById("number").value;
 digs=num.match(/\d/g).join("");
 url="https://wa.me/"+digs;
 window.location = url;
-}
+};
+
+( // support get params
+		(new URLSearchParams(window.location.search)).has("number") 
+        && 
+        window.location.replace(
+        	"https://wa.me/"+(new URLSearchParams(window.location.search)).get("number")
+       )
+)
 </script>
