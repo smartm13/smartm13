@@ -43,7 +43,10 @@ def ranslate_html_file_soup(input_path, output_path):
             new_file.write(str(soup))
             # new_file.write(str(translated_text))
 
+
 def translate_html_file(input_path, output_path):
+    if os.path.exists(output_path):
+        return logging.info(f"Skipping {input_path}")
     enc = detect_encoding(input_path)
     logging.info(f"Translating {input_path} with Encoding {enc}")
     with open(input_path, 'r', encoding=enc) as file:
@@ -66,7 +69,7 @@ def translate_html_file(input_path, output_path):
 # Main function to create English version folder
 def create_english_version_folder(input_folder):
     output_folder = input_folder + '_english_version'
-    failed = []
+    failed = {}
     for root, dirs, files in os.walk(input_folder):
         for file in files:
             if file.endswith('.html'):
@@ -75,10 +78,11 @@ def create_english_version_folder(input_folder):
                 os.makedirs(os.path.dirname(output_path), exist_ok=True)
                 try:
                     translate_html_file(input_path, output_path)
-                except:
-                    failed.append(input_path)
+                except Exception as e:
+                    failed[input_path] = repr(e)
     print("Failed: ", failed)
 
 
 if __name__ == '__main__':
-    create_english_version_folder('Site1-www.haiws.com')
+    # create_english_version_folder('Site1-www.haiws.com')
+    create_english_version_folder('site-2-yxlifeng.cn')
